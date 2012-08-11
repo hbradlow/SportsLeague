@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        {% block style_base %}
+        <link href="{% static "pinax/css/theme.css" %}" rel="stylesheet">
+            <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+                <link href="{% static "css/bootstrap-responsive.css" %}" rel="stylesheet">
+                    {% block extra_style %}{% endblock %}
+                    {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
