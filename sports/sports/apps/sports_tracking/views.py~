@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import *
 from django.core.urlresolvers import reverse
 from sports_tracking.models import Sport
-from sports_tracking.models import Fraternity
+
 def home(request):
     sport_FF = Sport.objects.get(type="FF").display()
     sport_VB = Sport.objects.get(type="VB").display()

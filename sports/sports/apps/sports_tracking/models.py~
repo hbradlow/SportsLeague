@@ -7,7 +7,6 @@ from django.contrib import admin
 
 class Fraternity(models.Model):
     name = models.CharField(max_length="200")
-    
 
 class Sport(models.Model):
     BASKETBALL = 'BB'

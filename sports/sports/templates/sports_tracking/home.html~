@@ -1,24 +1,49 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <h1>Sports Tracking</h1>
+    <h1>IFC Sports</h1>
     <div class="container-fluid">
-  <div class="row-fluid">
+    <div class="row-fluid">
     <div class="span2" style="border:2px solid #000">
       <dl>
-	<dt>Fall</dt>
-	   <div align="center">Flag Football</div>
-	   <div align="center">Volleyball</div>
-	<dt>Winter</dt>
-	   <div align="center">Basketball</div>
-	   <div align="center">Soccer</div>
-	<dt>Spring</dt>
-	   <div align="center">Softball</div>
-	   <div align="center">Hockey</div>
+        <dt>Overall Rankings</dt>
+        <dt>Fall</dt>
+           <div align="center">{{sport_FF}}</div>
+           <div align="center">{{sport_VB}}</div>
+        <dt>Winter</dt>
+           <div align="center">{{sport_BB}}</div>
+           <div align="center">{{sport_SR}}</div>
+        <dt>Spring</dt>
+           <div align="center">{{sport_SB}}</div>
+           <div align="center">{{sport_HY}}</div>
+
       </dl>
     </div>
-    <div class="span10">
-      Main body
+    <div class="span10" style="border:2px solid #000">
+      <dl>
+	<dt><h3>Overall Ranking</h3></dt>
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <th>Fraternity Name</th>
+	      <th>{{sport_FF}}</th>
+	      <th>{{sport_VB}}</th>
+	      <th>{{sport_BB}}</th>
+	      <th>{{sport_SR}}</th>
+	      <th>{{sport_SB}}</th>
+	      <th>{{sport_HY}}</th>
+	      <th>Overall Points</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {% for fraternity in fraternities_list %}
+	    <tr>
+	      <td>{{fraternity.name}}</td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+       </dl>	
     </div>
   </div>
 </div>
