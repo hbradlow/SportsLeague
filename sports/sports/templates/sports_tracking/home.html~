@@ -4,18 +4,18 @@
     <h1>IFC Sports</h1>
     <div class="container-fluid">
     <div class="row-fluid">
-    <div class="span2" style="border:2px solid #000">
+    <div class="span2 side_bar" style="border:2px solid #000">
       <dl>
-        <dt>Overall Rankings</dt>
-        <dt>Fall</dt>
-           <div align="center">{{sport_FF}}</div>
-           <div align="center">{{sport_VB}}</div>
-        <dt>Winter</dt>
-           <div align="center">{{sport_BB}}</div>
-           <div align="center">{{sport_SR}}</div>
-        <dt>Spring</dt>
-           <div align="center">{{sport_SB}}</div>
-           <div align="center">{{sport_HY}}</div>
+        <dt><a href="{% url home %}">Overall Rankings</a></dt>
+	<dt class="quarter">Fall</dt>
+           <div align="center" style="border:2px solid #FFDE6C">{{sport_FF}}</div>
+           <div align="center" class="side_bar_sport">{{sport_VB}}</div>
+        <dt class="quarter">Winter</dt>
+           <div align="center" class="side_bar_sport">{{sport_BB}}</div>
+           <div align="center" class="side_bar_sport">{{sport_SR}}</div>
+        <dt class="quarter">Spring</dt>
+           <div align="center" class="side_bar_sport">{{sport_SB}}</div>
+           <div align="center" class="side_bar_sport">{{sport_HY}}</div>
 
       </dl>
     </div>
