@@ -52,6 +52,24 @@
             <div class="container" style="margin-top:80px;">  
 	        {% include "_messages.html" %}
                 {% block body %}
+		   {% block sidebar %}
+		      <div class="span2 side_bar" style="border:2px solid #000">
+                         {% block sidebar_content %}
+                              <ul class="nav nav-list">
+				<li align="center" class="side_bar_sport"><a href="{% url home %}">Overall Rankings</a></li>
+				<li class="nav-header quarter">Fall</li>
+				<li align="center" class="side_bar_sport"><a href="{% url flag_football %}">{{sport_FF}}</a></li>
+				<li align="center" class="side_bar_sport"><a href="{% url volleyball %}">{{sport_VB}}</a></li>
+				<li class="nav-header quarter">Winter</li>
+				<li align="center" class="side_bar_sport"><a href="{% url basketball %}">{{sport_BB}}</a></li>
+				<li align="center" class="side_bar_sport"><a href="{% url soccer %}">{{sport_SR}}</a></li>
+				<li class="nav-header quarter">Spring</li>
+				<li align="center" class="side_bar_sport"><a href="{% url softball %}">{{sport_SB}}</a></li>
+				<li align="center" class="side_bar_sport"><a href="{% url hockey %}">{{sport_HY}}</a></li>
+			      </ul>
+			 {% endblock %}
+                      </div>
+                   {% endblock %}
                 {% endblock %}
             </div>
         {% endblock %}

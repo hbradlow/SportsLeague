@@ -113,7 +113,13 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-]
+    "sports_tracking.context_processors.sport_FF",
+    "sports_tracking.context_processors.sport_VB",
+    "sports_tracking.context_processors.sport_BB",
+    "sports_tracking.context_processors.sport_SR",
+    "sports_tracking.context_processors.sport_SB",
+    "sports_tracking.context_processors.sport_HY",
+    ]
 
 ROOT_URLCONF = 'sports.urls'
 
