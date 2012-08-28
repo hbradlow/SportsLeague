@@ -62,16 +62,33 @@
 @import "utilities.less"; // Has to be last to override when necessary
 
 //Sports tracker app
-@yellow: #FFDE6C;
-@black: #241D05;
+@yellow: #ffd339;
+@black: fade(#1a1914, 90%);
 .quarter{
     background: @yellow; 
     color: @black;
     }
+    
 .side_bar{
     background: @black;
     }
+    
 .side_bar_sport{
     color: @yellow; 
     padding:5px;
+    }
+
+.nav .nav-header{
+    color: @black;
+    font-weight: bold;
+    font-size: 12px;
+    }
+
+.nav>li>a {
+    color: darken(@yellow, 20%);
+    &:hover {
+        background-color: darken(@yellow, 20%);
+        color: @black;
+        font-weight: bold;
+        }
     }

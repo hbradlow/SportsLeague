@@ -2,35 +2,18 @@
 
 {% block body %}
     <h1>IFC Sports</h1>
-    <div class="container-fluid">
-    <div class="row-fluid">
-    <div class="span2 side_bar" style="border:2px solid #000">
-      <ul class="nav nav-list">
-	<li align="center" class="side_bar_sport"><a href="{% url home %}">Overall Rankings</a></li>
-	<li class="nav-header quarter">Fall</li>
-           <li align="center" class="side_bar_sport"><a href="{% url flag_football %}">{{sport_FF}}</a></li>
-           <li align="center" class="side_bar_sport"><a href="{% url volleyball %}">{{sport_VB}}</a></li>
-        <li class="nav-header quarter">Winter</li>
-           <li align="center" class="side_bar_sport"><a href="{% url basketball %}">{{sport_BB}}</a></li>
-           <li align="center" class="side_bar_sport"><a href="{% url soccer %}">{{sport_SR}}</a></li>
-        <li class="nav-header quarter">Spring</li>
-           <li align="center" class="side_bar_sport"><a href="{% url softball %}">{{sport_SB}}</a></li>
-           <li align="center" class="side_bar_sport"><a href="{% url hockey %}">{{sport_HY}}</a></li>
-      </ul>
-    </div>
-    <div class="span10" style="border:2px solid #000">
       <dl>
 	<dt><h3>Overall Ranking</h3></dt>
 	<table class="table table-bordered">
 	  <thead>
 	    <tr>
 	      <th>Fraternity Name</th>
-	      <th>{{sport_FF}}</th>
-	      <th>{{sport_VB}}</th>
-	      <th>{{sport_BB}}</th>
-	      <th>{{sport_SR}}</th>
-	      <th>{{sport_SB}}</th>
-	      <th>{{sport_HY}}</th>
+	      <th>{{sports.FF.display}}</th>
+	      <th>{{sports.VB.display}}</th>
+	      <th>{{sports.BB.display}}</th>
+	      <th>{{sports.SR.display}}</th>
+	      <th>{{sports.SB.display}}</th>
+	      <th>{{sports.HY.display}}</th>
 	      <th>Overall Points</th>
 	    </tr>
 	  </thead>
@@ -42,8 +25,5 @@
 	    {% endfor %}
 	  </tbody>
 	</table>
-       </dl>	
-    </div>
-  </div>
-</div>
+       </dl>
 {% endblock %}
