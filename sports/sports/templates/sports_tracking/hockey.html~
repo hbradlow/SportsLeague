@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1>IFC Sports</h1>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span10" style="border:2px solid #000">
+          <dt><h3>Hockey</h3></dt>
+        </div>
+      </div>
+     </div>
+{% endblock %}

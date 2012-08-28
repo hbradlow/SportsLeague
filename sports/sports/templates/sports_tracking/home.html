@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1>IFC Sports</h1>
+	<dt><h3>Overall Ranking</h3></dt>
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <th>Fraternity Name</th>
+	      <th>{{sports.FF.display}}</th>
+	      <th>{{sports.VB.display}}</th>
+	      <th>{{sports.BB.display}}</th>
+	      <th>{{sports.SR.display}}</th>
+	      <th>{{sports.SB.display}}</th>
+	      <th>{{sports.HY.display}}</th>
+	      <th>Overall Points</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {% for fraternity in fraternities_list %}
+	    <tr>
+	      <td>{{fraternity.name}}</td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+{% endblock %}

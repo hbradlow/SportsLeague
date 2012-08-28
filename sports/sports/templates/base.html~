@@ -1,0 +1,100 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+        {% block viewport %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+
+        {% block style_base %}
+            <link href="{% static "bootstrap/sports_tracker.css" %}" rel="stylesheet">
+            <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
+            {% block extra_style %}{% endblock %}
+        {% endblock %}
+
+        <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        {% block extra_head_base %}
+            {% block extra_head %}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+
+        {% block topbar_base %}
+            <div class="navbar {% block navbar_class %}navbar-fixed-top{% endblock %}">
+                <div class="navbar-inner">
+                    <div class="container">
+                        {% block topbar %}
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            {% block site_brand %}<a class="brand" href="{% url home %}">Sports League</a>{% endblock %}
+                            <div class="nav-collapse">
+                                {% block nav %}
+                                {% endblock %}
+                                {% block account_bar %}{% endblock %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block body_base %}
+            <div class="container" style="margin-top:80px;">  
+	        {% include "_messages.html" %}
+		   {% block sidebar %}
+		      <div class="span2 side_bar" style="border:2px solid #1a1914">
+                         {% block sidebar_content %}
+			   <ul class="navbar-fixed-top">
+                              <ul class="nav nav-list">
+				<li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
+				<li class="nav-header quarter">Fall</li>
+				<li align="center" class="side_bar_sport"><a href="{% url flag_football %}">{{sports.FF.display}}</a></li>
+				<li align="center" class="side_bar_sport"><a href="{% url volleyball %}">{{sports.VB.display}}</a></li>
+				<li class="nav-header quarter">Winter</li>
+				<li align="center" class="side_bar_sport"><a href="{% url basketball %}">{{sports.BB.display}}</a></li>
+				<li align="center" class="side_bar_sport"><a href="{% url soccer %}">{{sports.SR.display}}</a></li>
+				<li class="nav-header quarter">Spring</li>
+				<li align="center" class="side_bar_sport"><a href="{% url softball %}">{{sports.SB.display}}</a></li>
+				<li align="center" class="side_bar_sport"><a href="{% url hockey %}">{{sports.HY.display}}</a></li>
+			      </ul>
+			   </ul>
+			 {% endblock %}
+                      </div>
+                   {% endblock %}
+		      <div class="span8" stye="border:2px solid #000">
+                {% block body %}
+                {% endblock %}
+		      </div>
+            </div>
+        {% endblock %}
+
+        {% block footer_base %}
+            <div id="footer">
+                <div class="inner">
+                    <div class="container">
+                        {% block footer %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block script_base %}
+            <script src="{% static "jquery.min.js" %}"></script>
+            <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+            {% block extra_script %}{% endblock %}
+        {% endblock %}
+
+        {% block extra_body_base %}
+            {% block extra_body %}{% endblock %}
+        {% endblock %}
+    </body>
+</html>
