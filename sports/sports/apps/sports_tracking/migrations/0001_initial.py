@@ -18,7 +18,8 @@ class Migration(SchemaMigration):
         # Adding model 'Sport'
         db.create_table('sports_tracking_sport', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('type', self.gf('django.db.models.fields.CharField')(max_length='300')),
+            ('type', self.gf('django.db.models.fields.CharField')(default='BB', max_length='300')),
+            ('season', self.gf('django.db.models.fields.CharField')(default='FL', max_length='300')),
         ))
         db.send_create_signal('sports_tracking', ['Sport'])
 
@@ -171,7 +172,8 @@ class Migration(SchemaMigration):
         'sports_tracking.sport': {
             'Meta': {'object_name': 'Sport'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'type': ('django.db.models.fields.CharField', [], {'max_length': "'300'"})
+            'season': ('django.db.models.fields.CharField', [], {'default': "'FL'", 'max_length': "'300'"}),
+            'type': ('django.db.models.fields.CharField', [], {'default': "'BB'", 'max_length': "'300'"})
         },
         'sports_tracking.team': {
             'Meta': {'object_name': 'Team'},

@@ -103,6 +103,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+    'lockdown.middleware.LockdownMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -141,6 +143,7 @@ INSTALLED_APPS = (
     #external
     'django_extensions',
     'south',
+    'lockdown',
     
     #project
     'sports_tracking',
@@ -174,3 +177,11 @@ LOGGING = {
         },
     }
 }
+
+#lockdown
+LOCKDOWN_PASSWORD = 'ifc_needs_this'
+LOCKDOWN_FORM = "lockdown.forms.LockdownForm"
+
+#dj_database_url
+import dj_database_url
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost/sports_tracking')}
