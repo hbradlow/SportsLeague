@@ -3,6 +3,28 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 
+class Fraternity(models.Model):
+    name = models.CharField(max_length="200")
+
+    def __unicode__(self):
+        return self.name
+
+class Group(models.Model):
+    GROUP_A = 'A'
+    GROUP_B = 'B'
+    GROUP_CHOICES = (
+        (GROUP_A, 'Group A'),
+        (GROUP_B, 'Group B'),
+    )
+    group = models.CharField(max_length="300", choices=GROUP_CHOICES, default=GROUP_A)
+    fraternities = models.ForeignKey(Fraternity)
+
+    def display(self):
+        return self.get_group_display()
+
+    def __unicode__(self):
+        return self.display()
+
 class Sport(models.Model):
     BASKETBALL = 'BB'
     FLAG_FOOTBALL = 'FF'
@@ -29,30 +51,13 @@ class Sport(models.Model):
         (SPRING, 'Spring'),
     )
     season = models.CharField(max_length="300", choices=SEASON_CHOICES, default=FALL)
-    
+    group = models.ForeignKey(Group)
+
     def display(self):
         return self.get_type_display()
     
     def __unicode__(self):
         return self.display()
-
-class Fraternity(models.Model):
-    name = models.CharField(max_length="200")
-    sport_history = models.ManyToManyField(Sport, through="Season_history")
-
-    def __unicode__(self):
-        return self.name
-
-class Season_history(models.Model):
-    fraternity = models.ForeignKey(Fraternity)
-    sport = models.ForeignKey(Sport)
-    GROUP_A = 'A'
-    GROUP_B = 'B'
-    GROUP_CHOICES = (
-        (GROUP_A, 'Group A'),
-        (GROUP_B, 'Group B'),
-    )
-    group = models.CharField(max_length='300', choices=GROUP_CHOICES, default=GROUP_A)
 
 class Player(models.Model):
     user = models.ForeignKey(User)
@@ -64,20 +69,14 @@ class Team(models.Model):
     def num_wins(self):
         return self.games_won.all().count()
 
-class League(models.Model):
-    teams = models.ManyToManyField(Team)
-    sport = models.ForeignKey(Sport)
-    season = models.CharField(max_length="300",choices=(("fall","Fall"),("spring","Spring")))
-
 class Game(models.Model):
     teams = models.ManyToManyField(Team)
     winner = models.ForeignKey(Team,related_name="games_won")
-    league = models.ForeignKey(League)
 
 admin.site.register(Fraternity)
+admin.site.register(Group)
 admin.site.register(Player)
 admin.site.register(Sport)
 admin.site.register(Team)
-admin.site.register(League)
 admin.site.register(Game)
-admin.site.register(Season_history)
+
