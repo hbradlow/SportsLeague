@@ -3,9 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 
-class Fraternity(models.Model):
-    name = models.CharField(max_length="200")
-
 class Sport(models.Model):
     BASKETBALL = 'BB'
     FLAG_FOOTBALL = 'FF'
@@ -35,6 +32,27 @@ class Sport(models.Model):
     
     def display(self):
         return self.get_type_display()
+    
+    def __unicode__(self):
+        return self.display()
+
+class Fraternity(models.Model):
+    name = models.CharField(max_length="200")
+    sport_history = models.ManyToManyField(Sport, through="Season_history")
+
+    def __unicode__(self):
+        return self.name
+
+class Season_history(models.Model):
+    fraternity = models.ForeignKey(Fraternity)
+    sport = models.ForeignKey(Sport)
+    GROUP_A = 'A'
+    GROUP_B = 'B'
+    GROUP_CHOICES = (
+        (GROUP_A, 'Group A'),
+        (GROUP_B, 'Group B'),
+    )
+    group = models.CharField(max_length='300', choices=GROUP_CHOICES, default=GROUP_A)
 
 class Player(models.Model):
     user = models.ForeignKey(User)
@@ -62,3 +80,4 @@ admin.site.register(Sport)
 admin.site.register(Team)
 admin.site.register(League)
 admin.site.register(Game)
+admin.site.register(Season_history)
