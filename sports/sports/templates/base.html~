@@ -9,7 +9,7 @@
         {% endblock %}
 
         {% block style_base %}
-            <link href="{% static "bootstrap/sports_tracker.css" %}" rel="stylesheet">
+            <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
             {% block extra_style %}{% endblock %}
         {% endblock %}
@@ -28,7 +28,7 @@
         {% block topbar_base %}
             <div class="navbar {% block navbar_class %}navbar-fixed-top{% endblock %}">
                 <div class="navbar-inner">
-                    <div class="container">
+                    <div class="container" id="header">
                         {% block topbar %}
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                                 <span class="icon-bar"></span>
@@ -53,20 +53,23 @@
 		   {% block sidebar %}
 		      <div class="span2 side_bar" style="border:2px solid #1a1914">
                          {% block sidebar_content %}
-			   <ul class="navbar-fixed-top">
+			   <div class="sidebar-nav-fixed">
                               <ul class="nav nav-list">
 				<li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
 				<li class="nav-header quarter">Fall</li>
 				<li align="center" class="side_bar_sport"><a href="{% url flag_football %}">{{sports.FF.display}}</a></li>
+				<hr align="center">
 				<li align="center" class="side_bar_sport"><a href="{% url volleyball %}">{{sports.VB.display}}</a></li>
 				<li class="nav-header quarter">Winter</li>
 				<li align="center" class="side_bar_sport"><a href="{% url basketball %}">{{sports.BB.display}}</a></li>
+				<hr align="center" id="nav_divider">
 				<li align="center" class="side_bar_sport"><a href="{% url soccer %}">{{sports.SR.display}}</a></li>
 				<li class="nav-header quarter">Spring</li>
 				<li align="center" class="side_bar_sport"><a href="{% url softball %}">{{sports.SB.display}}</a></li>
+				<li align="center" class="side_bar_sport" id="nav_divider">____________________</li>
 				<li align="center" class="side_bar_sport"><a href="{% url hockey %}">{{sports.HY.display}}</a></li>
 			      </ul>
-			   </ul>
+			   </div>
 			 {% endblock %}
                       </div>
                    {% endblock %}
