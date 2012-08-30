@@ -715,6 +715,8 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .quarter{background:#ffd339;color:rgba(26, 25, 20, 0.9);}
 .side_bar{background:rgba(26, 25, 20, 0.9);}
 .side_bar_sport{color:#ffd339;padding:5px;}
-.nav .nav-header{color:rgba(26, 25, 20, 0.9);font-weight:bold;font-size:30px;}
+.nav .nav-header{color:rgba(26, 25, 20, 0.9);font-weight:bold;font-size:12px;}
 .nav>li>a{color:#d2a300;}.nav>li>a:hover{background-color:#d2a300;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
-.navbar-inner{background-color:rgba(26, 25, 20, 0.9);border:2px solid #000000;}
+.navbar .brand{color:#ffd339;margin-left:136px;}
+hr{margin:0px;color:#d2a300;background-color:#d2a300;padding:1px;border-bottom:0px;border-top:0px;height:.5px;}
+#header{background-color:rgba(26, 25, 20, 0.9);border-top:6px solid #ffd339;width:1424px;}
