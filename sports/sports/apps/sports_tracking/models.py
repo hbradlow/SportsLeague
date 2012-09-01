@@ -17,13 +17,14 @@ class Group(models.Model):
         (GROUP_B, 'Group B'),
     )
     group = models.CharField(max_length="300", choices=GROUP_CHOICES, default=GROUP_A)
-    fraternities = models.ForeignKey(Fraternity)
-
+    fraternity = models.ManyToManyField(Fraternity)
+ 
     def display(self):
         return self.get_group_display()
 
     def __unicode__(self):
         return self.display()
+
 
 class Sport(models.Model):
     BASKETBALL = 'BB'
@@ -41,7 +42,7 @@ class Sport(models.Model):
         (HOCKEY, 'Hockey'),
     )
     type = models.CharField(max_length="300",choices=SPORTS_CHOICES, default=BASKETBALL)
-    
+
     FALL = 'FL'
     WINTER = 'WR'
     SPRING = 'SG'
@@ -51,11 +52,11 @@ class Sport(models.Model):
         (SPRING, 'Spring'),
     )
     season = models.CharField(max_length="300", choices=SEASON_CHOICES, default=FALL)
-    group = models.ForeignKey(Group)
+    group = models.ManyToManyField(Group)
 
     def display(self):
         return self.get_type_display()
-    
+
     def __unicode__(self):
         return self.display()
 
