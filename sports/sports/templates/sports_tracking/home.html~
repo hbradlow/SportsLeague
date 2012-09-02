@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <h1>IFC Sports</h1>
-	<dt><h3>Overall Ranking</h3></dt>
+{% load sport_extras %}
+	<dt><h1>Overall Ranking</h1></dt>
 	<table class="table table-bordered">
 	  <thead>
 	    <tr>
-	      <th>Fraternity Name</th>
+	      <th>Rank</th>
+	      <th>Fraternity</th>
 	      <th>{{sports.FF.display}}</th>
 	      <th>{{sports.VB.display}}</th>
 	      <th>{{sports.BB.display}}</th>
@@ -17,10 +18,13 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    {% for fraternity in fraternities_list %}
-	    <tr>
-	      <td>{{fraternity.name}}</td>
-	    </tr>
+	    {% for i, fraternity in list_iter((fraternities_list|length|get_range, fraternity_list)) %}
+
+	   <tr>
+		<td>{{i}}</td>
+		<td>{{fraternity.name}}</td>
+	   </tr>
+
 	    {% endfor %}
 	  </tbody>
 	</table>
