@@ -52,7 +52,9 @@ class Sport(models.Model):
         (SPRING, 'Spring'),
     )
     season = models.CharField(max_length="300", choices=SEASON_CHOICES, default=FALL)
-    group = ManyToManyField(Group)
+    group = models.ManyToManyField(Group)
+
+    def get_group
 
     def display(self):
         return self.get_type_display()
