@@ -79,13 +79,12 @@ table{
     border: 1px solid @black;
     }
 
-.table-bordered td{
-    &:hover {
-        background-color: darken(@yellow, 20%);
-        color: @black;
-        font-weight: bold;
-        }
+.table tbody tr:hover td,.table tbody tr:hover th{
+    background-color:@yellow;
+    color: @black;
+    font-weight: bold;
     }
+
 .quarter{
     background: @yellow; 
     color: @black;

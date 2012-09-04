@@ -715,7 +715,7 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 table{background-color:rgba(26, 25, 20, 0.9);color:#ffd339;}
 .table th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);}
 .table-bordered,.table-bordered th,.table-bordered td{border:1px solid rgba(26, 25, 20, 0.9);}
-.table-bordered td:hover{background-color:#d2a300;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
+.table tbody tr:hover td,.table tbody tr:hover th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
 .quarter{background:#ffd339;color:rgba(26, 25, 20, 0.9);}
 .side_bar{background:rgba(26, 25, 20, 0.9);}
 .side_bar_sport{color:#ffd339;padding:5px;}
