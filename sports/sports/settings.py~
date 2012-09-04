@@ -113,13 +113,8 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    "sports_tracking.context_processor.sport_FF",
-    "sports_tracking.context_processor.sport_VB",
-    "sports_tracking.context_processor.sport_BB",
-    "sports_tracking.context_processor.sport_SR",
-    "sports_tracking.context_processor.sport_SB",
-    "sports_tracking.context_processor.sport_HY",
-    ]
+    "sports_tracking.context_processors.sports",
+]
 
 ROOT_URLCONF = 'sports.urls'
 
@@ -149,6 +144,9 @@ INSTALLED_APPS = (
     
     #project
     'sports_tracking',
+    
+    #template tags
+    'django-multiforloop',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
+{% load multifor %}
 {% load sport_extras %}
+
 	<dt><h1>Overall Ranking</h1></dt>
+	<dt><br></dt>
 	<table class="table table-bordered">
-	  <thead>
+	  <thead class="sport_brand">
 	    <tr>
 	      <th>Rank</th>
 	      <th>Fraternity</th>
@@ -18,10 +21,10 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    {% for i, fraternity in (12|get_range, fraternity_list)|list_iter %}
+	    {% for rank in fraternities_list|length|get_range; fraternity in fraternities_list %}
 
 	   <tr>
-		<td>{{i}}</td>
+		<td>{{rank}}</td>
 		<td>{{fraternity.name}}</td>
 	   </tr>
 

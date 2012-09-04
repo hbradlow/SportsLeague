@@ -64,6 +64,28 @@
 //Sports tracker app
 @yellow: #ffd339;
 @black: fade(#1a1914, 90%);
+
+table{ 
+    background-color: @black;
+    color: @yellow;
+    }
+
+.table th{
+    background-color: @yellow;
+    color: @black;
+    }
+
+.table-bordered, .table-bordered th, .table-bordered td{
+    border: 1px solid @black;
+    }
+
+.table-bordered td{
+    &:hover {
+        background-color: darken(@yellow, 20%);
+        color: @black;
+        font-weight: bold;
+        }
+    }
 .quarter{
     background: @yellow; 
     color: @black;
