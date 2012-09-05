@@ -147,6 +147,9 @@ INSTALLED_APPS = (
     
     #project
     'sports_tracking',
+    
+    #template tags
+    'multiforloop',
 )
 
 # A sample logging configuration. The only tangible logging
