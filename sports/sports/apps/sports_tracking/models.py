@@ -3,28 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 
-class Fraternity(models.Model):
-    name = models.CharField(max_length="200")
-
-    def __unicode__(self):
-        return self.name
-
-class Group(models.Model):
-    GROUP_A = 'A'
-    GROUP_B = 'B'
-    GROUP_CHOICES = (
-        (GROUP_A, 'Group A'),
-        (GROUP_B, 'Group B'),
-    )
-    group = models.CharField(max_length="300", choices=GROUP_CHOICES, default=GROUP_A)
-    fraternity = models.ManyToManyField(Fraternity)
- 
-    def display(self):
-        return self.get_group_display()
-
-    def __unicode__(self):
-        return self.display()
-
 
 class Sport(models.Model):
     BASKETBALL = 'BB'
@@ -52,7 +30,6 @@ class Sport(models.Model):
         (SPRING, 'Spring'),
     )
     season = models.CharField(max_length="300", choices=SEASON_CHOICES, default=FALL)
-    group = models.ManyToManyField(Group)
 
     def display(self):
         return self.get_type_display()
@@ -62,7 +39,6 @@ class Sport(models.Model):
 
 class Player(models.Model):
     user = models.ForeignKey(User)
-    fraternity = models.ForeignKey(Fraternity)
     
 class Team(models.Model):
     players = models.ManyToManyField(Player)
@@ -73,6 +49,35 @@ class Team(models.Model):
 class Game(models.Model):
     teams = models.ManyToManyField(Team)
     winner = models.ForeignKey(Team,related_name="games_won")
+    sport = models.ForeignKey(Sport)
+
+class Fraternity(models.Model):
+    name = models.CharField(max_length="200")
+    teams = models.ManyToManyField(Team)
+
+    def overall_points_for_sport(self,sport):
+        points = 0
+        for team in self.teams:
+            points += team.games_won.filter(sport=sport).count()
+        return points
+    def __unicode__(self):
+        return self.name
+
+class Group(models.Model):
+    GROUP_A = 'A'
+    GROUP_B = 'B'
+    GROUP_CHOICES = (
+        (GROUP_A, 'Group A'),
+        (GROUP_B, 'Group B'),
+    )
+    group = models.CharField(max_length="300", choices=GROUP_CHOICES, default=GROUP_A)
+    fraternities = models.ManyToManyField(Fraternity)
+    sport = models.ForeignKey(Sport)
+    def display(self):
+        return self.get_group_display()
+
+    def __unicode__(self):
+        return self.display()
 
 admin.site.register(Fraternity)
 admin.site.register(Group)
