@@ -1,6 +1,10 @@
 from django import template
 
 
+
+
+
+
 register = template.Library()
 
 @register.filter
@@ -27,17 +31,12 @@ def get_range( value ):
 @register.filter
 def list_iter( lists ):
     list_a, list_b = lists
-
     for x, y in zip(list_a, list_b):
         yield (x, y)
-
-# test the filter
     for x in list_iter((list_a, list_b)):
-      print x
+        print x
 
 @register.filter
-def overall_points(fraternity, sport):
+def overall_points(fraternity, sport_type):
+    sport = Sport.objects.filter(type=sport_type)[0] #in case there is more than one sport of that type for some reason (HACK)
     return fraternity.overall_points_for_sport( sport )
-
-
-

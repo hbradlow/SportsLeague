@@ -26,12 +26,15 @@
 	   <tr>
 		<td>{{rank}}</td>
 		<td>{{fraternity.name}}</td>
-		<td>{{fraternity|overall_points:sport.FF}}</td>
+		<td>{{fraternity|overall_points:"FF"}}</td>
+        {# You should fill in these appropriately #}
+        {% comment %}
 		<td>{{fraternity|overall_points:sport.VB}}</td>
 	        <td>{{fraternity|overall_points:sport.BB}}</td>
 		<td>{{fraternity|overall_points:sport.SR}}</td>
 		<td>{{fraternity|overall_points:sport.SB}}</td>
 		<td>{{fraternity|overall_points:sport.HY}}</td>
+        {% endcomment %}
 	   </tr>
 
 	    {% endfor %}
