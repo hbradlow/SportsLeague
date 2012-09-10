@@ -5,7 +5,7 @@
 {% load sport_extras %}
 
 	<dt><h1>Overall Ranking</h1></dt>
-	<dt>Somthing</dt>
+	<dt><br></dt>
 	<table class="table table-bordered">
 	  <thead class="sport_brand">
 	    <tr>
@@ -26,6 +26,12 @@
 	   <tr>
 		<td>{{rank}}</td>
 		<td>{{fraternity.name}}</td>
+		<td>{{fraternity|overall_points:sport.FF}}</td>
+		<td>{{fraternity.overall_points_for_sport( sports.VB )}}</td>
+		<td>{{fraternity.overall_points_for_sport( sports.BB )}}</td>
+		<td>{{fraternity.overall_points_for_sport( sports.SR )}}</td>
+		<td>{{fraternity.overall_points_for_sport( sports.SB )}}</td>
+		<td>{{fraternity.overall_points_for_sport( sports.HY )}}</td>
 	   </tr>
 
 	    {% endfor %}

@@ -5,4 +5,5 @@ django-extensions==0.9
 django-lockdown==0.1.1
 docutils==0.9.1
 psycopg2==2.4.5
+pygraphviz==1.1
 wsgiref==0.1.2

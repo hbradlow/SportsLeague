@@ -1,4 +1,5 @@
 from django import template
+from sport_tracking.models import Sport, Fraternity
 
 register = template.Library()
 
@@ -33,3 +34,10 @@ def list_iter( lists ):
 # test the filter
     for x in list_iter((list_a, list_b)):
       print x
+
+@register.filter
+def overall_points(fraternity, sport):
+    return fraternity.overall_points_for_sport( sport )
+
+
+

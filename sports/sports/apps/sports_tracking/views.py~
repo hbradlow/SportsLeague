@@ -3,7 +3,6 @@ from django.shortcuts import *
 from django.core.urlresolvers import reverse
 from sports_tracking.models import Sport
 from sports_tracking.models import Fraternity
-from django.template import Library
 
 def home(request):
     fraternities_list = Fraternity.objects.all()
@@ -26,8 +25,3 @@ def softball(request):
 
 def hockey(request):
     return render(request,"sports_tracking/hockey.html")
-
-register = Library()
-@register.filter
-def get_range( value ):
-    return range( value )
