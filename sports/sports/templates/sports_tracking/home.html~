@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 
-{% block body %}
+{% block bodytitle %}
+<h1 class="body_title">Overall Ranking</h1>
+{% endblock %}
+
+{% block body_content %}
 {% load multifor %}
 {% load sport_extras %}
 
-	<dt><h1>Overall Ranking</h1></dt>
+	
 	<dt><br></dt>
 	<table class="table table-bordered">
 	  <thead class="sport_brand">
 	    <tr>
-	      <th>Rank</th>
-	      <th>Fraternity</th>
-	      <th>{{sports.FF.display}}</th>
-	      <th>{{sports.VB.display}}</th>
-	      <th>{{sports.BB.display}}</th>
-	      <th>{{sports.SR.display}}</th>
-	      <th>{{sports.SB.display}}</th>
-	      <th>{{sports.HY.display}}</th>
-	      <th>Overall Points</th>
+	      <th class="table_width_rank">Rank</th>
+	      <th class="tablehead_width_fraternity">Fraternity</th>
+	      <th class="tablehead_width_sport">{{sports.FF.display}}</th>
+	      <th class="tablehead_width_sport">{{sports.VB.display}}</th>
+	      <th class="tablehead_width_sport">{{sports.BB.display}}</th>
+	      <th class="tablehead_width_sport">{{sports.SR.display}}</th>
+	      <th class="tablehead_width_sport">{{sports.SB.display}}</th>
+	      <th class="tablehead_width_sport">{{sports.HY.display}}</th>
+	      <th class="tablehead_width_sport">Overall Points</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -26,12 +30,12 @@
 	   <tr>
 		<td>{{rank}}</td>
 		<td>{{fraternity.name}}</td>
-		<td>{{fraternity|overall_points:sport.FF}}</td>
-		<td>{{fraternity.overall_points_for_sport( sports.VB )}}</td>
-		<td>{{fraternity.overall_points_for_sport( sports.BB )}}</td>
-		<td>{{fraternity.overall_points_for_sport( sports.SR )}}</td>
-		<td>{{fraternity.overall_points_for_sport( sports.SB )}}</td>
-		<td>{{fraternity.overall_points_for_sport( sports.HY )}}</td>
+		<td>{{fraternity|overall_points:"FF"}}</td>
+		<td>{{fraternity|overall_points:"VB"}}</td>
+	        <td>{{fraternity|overall_points:"BB"}}</td>
+		<td>{{fraternity|overall_points:"SR"}}</td>
+		<td>{{fraternity|overall_points:"SB"}}</td>
+		<td>{{fraternity|overall_points:"HY"}}</td>
 	   </tr>
 
 	    {% endfor %}

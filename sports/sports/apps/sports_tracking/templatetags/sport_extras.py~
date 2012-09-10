@@ -1,9 +1,9 @@
 from django import template
-<<<<<<< HEAD
 
-=======
-from sports_tracking.models import Sport, Fraternity
->>>>>>> 27c899ec8b6c17cfc24d11ea1b526233041ab99b
+
+
+
+
 
 register = template.Library()
 

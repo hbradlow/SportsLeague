@@ -68,11 +68,26 @@
 table{ 
     background-color: @black;
     color: @yellow;
+    table-layout: fixed;
     }
 
 .table th{
     background-color: @yellow;
     color: @black;
+    overflow: hidden;
+    }
+
+.table th.tablehead_width_rank{
+    width: 40px;
+    }
+    
+.table th.tablehead_width_fraternity{
+    width: 120px;
+    }
+
+
+.table th.tablehead_width_sport{
+    width: 80px;
     }
 
 .table-bordered, .table-bordered th, .table-bordered td{
@@ -90,6 +105,13 @@ table{
     color: @black;
     }
     
+.body_title{
+    color: @black;
+    margin-left: 28px;
+    margin-bottom: 12px;
+    margin-top: 6px;
+    }
+
 .side_bar{
     background: @black;
     }

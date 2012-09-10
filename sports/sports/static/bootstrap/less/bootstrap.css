@@ -717,6 +717,7 @@ table{background-color:rgba(26, 25, 20, 0.9);color:#ffd339;}
 .table-bordered,.table-bordered th,.table-bordered td{border:1px solid rgba(26, 25, 20, 0.9);}
 .table tbody tr:hover td,.table tbody tr:hover th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
 .quarter{background:#ffd339;color:rgba(26, 25, 20, 0.9);}
+h1{color:#ffd339;margin-left:10px;}
 .side_bar{background:rgba(26, 25, 20, 0.9);}
 .side_bar_sport{color:#ffd339;padding:5px;}
 .nav .nav-header{color:rgba(26, 25, 20, 0.9);font-weight:bold;font-size:12px;}

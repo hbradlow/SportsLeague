@@ -1,7 +1,7 @@
 from django import template
 
 
-
+from sports_tracking.models import Fraternity, Sport
 
 
 
