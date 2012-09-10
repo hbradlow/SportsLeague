@@ -1,5 +1,5 @@
 from django import template
-from sport_tracking.models import Sport, Fraternity
+
 
 register = template.Library()
 
