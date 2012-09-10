@@ -57,7 +57,7 @@ class Fraternity(models.Model):
 
     def overall_points_for_sport(self,sport):
         points = 0
-        for team in self.teams:
+        for team in self.teams.all():
             points += team.games_won.filter(sport=sport).count()
         return points
     def __unicode__(self):
