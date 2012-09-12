@@ -1,6 +1,72 @@
 {% extends "base.html" %}
 
-{% block body %}
-    <h1>IFC Sports</h1>
-          <dt><h3>Flag Football</h3></dt>
+
+{% block bodytitle %}
+<h1 class="body_title">Flag Football</h1>
 {% endblock %}
+
+{% block body %}
+{% load multifor %}
+
+{% load sport_extras %}
+
+<div class="span8">
+  <div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="active item">
+	<table class="table table-bordered">
+          <thead class="sport_brand">
+
+            <tr>              
+              <th class="tablehead_width_fraternity">Fraternity</th>
+              <th class="tablehead_width_sport">Wins</th>
+              <th class="tablehead_width_sport">Losses</th>
+              <th class="tablehead_width_sport">Ties</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for fraternity in "FF"|group:"A" %}
+           <tr>
+                <td>{{fraternity.name}}</td>
+           </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="item">
+	<table class="table table-bordered">
+          <thead class="sport_brand">
+            <tr>
+	      
+              <th class="tablehead_width_fraternity">Fraternity</th>
+              <th class="tablehead_width_sport">Wins</th>
+              <th class="tablehead_width_sport">Losses<</th>
+              <th class="tablehead_width_sport">Ties</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for fraternity in "FF"|group:"B" %}
+
+           <tr>
+	     <td>{{fraternity.name}}</td>
+	        </tr>
+
+            {% endfor %}
+          </tbody>
+	  </table>
+      </div>
+    </div>
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div> 
+ </div> 
+{% endblock %}
+
+<script type="text/javascript">
+
+$(function(){
+  $('.carousel').carousel();
+});
+
+</script>

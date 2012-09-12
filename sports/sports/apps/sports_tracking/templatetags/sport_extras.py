@@ -40,3 +40,8 @@ def list_iter( lists ):
 def overall_points(fraternity, sport_type):
     sport = Sport.objects.filter(type=sport_type)[0] #in case there is more than one sport of that type for some reason (HACK)
     return fraternity.overall_points_for_sport( sport )
+
+@register.filter
+def group(sport_type, group_name):
+    sport = Sport.objects.filter(type=sport_type)[0]
+    return sport.group_set.get(group=group_name).fraternities.all()
