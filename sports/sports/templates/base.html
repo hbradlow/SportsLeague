@@ -9,8 +9,12 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% endblock %}
 
+
+
         {% block style_base %}
+
             <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
+
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
             {% block extra_style %}{% endblock %}
         {% endblock %}
@@ -20,9 +24,12 @@
             <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
+
         {% block extra_head_base %}
+
             {% block extra_head %}{% endblock %}
         {% endblock %}
+
     </head>
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
 
@@ -31,38 +38,48 @@
                 <div class="navbar-inner">
 
                     <div class="container" id="header">
+
                         {% block topbar %}
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                                 <span class="icon-bar"></span>
+
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </a>
+
                             {% block site_brand %}<a class="brand" href="{% url home %}">Sports League</a>{% endblock %}
+
                             <div class="nav-collapse">
 
                                 {% block nav %}
+
 
                                 {% endblock %}
                                 {% block account_bar %}{% endblock %}
                             </div>
 
+
                         {% endblock %}
                     </div>
                 </div>
             </div>
+
         {% endblock %}
 
         {% block body_base %}
         <div class="container" style="margin-top:80px;">  
+
 	{% include "_messages.html" %}
 	  <div class="row">
 	    <div class="span10">
 	      {% block bodytitle %}
 	      {% endblock %}
+
 	    </div>
 	  </div>
 	    {% block sidebar %}
 	    <div class="span2 side_bar" style="border:2px solid #1a1914">
+
              {% block sidebar_content %}
 			   <div class="sidebar-nav-fixed">
                   <ul class="nav nav-list">
@@ -85,18 +102,21 @@
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
                         {% endif %}
                     {% endfor %}
+
 			      </ul>
 			   </div>
 			 {% endblock %}
              </div>
              {% endblock %}
 	     {% block body %}
+
 	     <div class="span8" stye="border:2px solid #000">
                 {% block body_content %}
                 {% endblock %}
 	     </div>
 	     {% endblock %}
 	</div>
+
         {% endblock %}
 
         {% block footer_base %}
@@ -110,15 +130,11 @@
         {% endblock %}
 
         {% block script_base %}
-            <script src="{% static "jquery.min.js" %}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
             <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
-	    <script src="{% static "bootstrap/js/sports_tracker.js" %}"></script>
-            <script type="text/javascript">
-	      $(function(){
-	        $('#myCarousel').carousel();
-	      });
+	    <script src="{% static "bootstrap/js/sports_tracker1.js" %}"></script>
+	    <script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-transition.js"></script>
 
-</script>
 	    {% block extra_script %}{% endblock %}
         {% endblock %}
 
