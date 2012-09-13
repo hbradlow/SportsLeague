@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import User
+from django_extensions.db.fields import *
 from django.contrib import admin
 
 
@@ -20,6 +21,7 @@ class Sport(models.Model):
         (HOCKEY, 'Hockey'),
     )
     type = models.CharField(max_length="300",choices=SPORTS_CHOICES, default=BASKETBALL)
+    slug = AutoSlugField(populate_from="type",unique=True)
 
     FALL = 'FL'
     WINTER = 'WR'

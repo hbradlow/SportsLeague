@@ -38,7 +38,10 @@ def list_iter( lists ):
 
 @register.filter
 def overall_points(fraternity, sport_type):
-    sport = Sport.objects.filter(type=sport_type)[0] #in case there is more than one sport of that type for some reason (HACK)
+    try:
+        sport = Sport.objects.get(type=sport_type)
+    except Sport.DoesNotExist:
+        return "N/A"
     return fraternity.overall_points_for_sport( sport )
 
 @register.filter

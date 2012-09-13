@@ -2,6 +2,7 @@
 
 
 
+
 {% load staticfiles %}
 <!DOCTYPE html>
 
@@ -12,6 +13,7 @@
         {% block viewport %}
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% endblock %}
+
 
 
         {% block style_base %}
@@ -27,6 +29,7 @@
             <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
+
         {% block extra_head_base %}
 
             {% block extra_head %}{% endblock %}
@@ -40,6 +43,7 @@
                 <div class="navbar-inner">
 
                     <div class="container" id="header">
+
                         {% block topbar %}
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                                 <span class="icon-bar"></span>
@@ -53,6 +57,7 @@
                             <div class="nav-collapse">
 
                                 {% block nav %}
+
 
                                 {% endblock %}
                                 {% block account_bar %}{% endblock %}
@@ -68,6 +73,7 @@
 
         {% block body_base %}
         <div class="container" style="margin-top:80px;">  
+
 	{% include "_messages.html" %}
 	  <div class="row">
 	    <div class="span10">
@@ -78,10 +84,12 @@
 	  </div>
 	    {% block sidebar %}
 	    <div class="span2 side_bar" style="border:2px solid #1a1914">
+<<<<<<< HEAD
                          {% block sidebar_content %}
 
 			   <div class="sidebar-nav-fixed">
                               <ul class="nav nav-list">
+
 				<li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
 				<li class="nav-header quarter">Fall</li>
 				<li align="center" class="side_bar_sport"><a href="{% url flag_football %}">{{sports.FF.display}}</a></li>
@@ -96,7 +104,32 @@
 				<li align="center" class="side_bar_sport"><a href="{% url softball %}">{{sports.SB.display}}</a></li>
 				<hr align="center" id="nav_divider">
 
+
 				<li align="center" class="side_bar_sport"><a href="{% url hockey %}">{{sports.HY.display}}</a></li>
+=======
+             {% block sidebar_content %}
+			   <div class="sidebar-nav-fixed">
+                  <ul class="nav nav-list">
+                    <li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
+                    <li class="nav-header quarter">Fall</li>
+                    {% for sport in sports %}
+                        {% if sport.season == "FL" %}
+                            <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="nav-header quarter">Winter</li>
+                    {% for sport in sports %}
+                        {% if sport.season == "WR" %}
+                            <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="nav-header quarter">Spring</li>
+                    {% for sport in sports %}
+                        {% if sport.season == "SG" %}
+                            <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+>>>>>>> a0e066b83af105f5b39b4dc69e9c61794e652c92
 			      </ul>
 			   </div>
 			 {% endblock %}
@@ -110,6 +143,7 @@
 	     </div>
 	     {% endblock %}
 	</div>
+
         {% endblock %}
 
         {% block footer_base %}
@@ -127,12 +161,7 @@
             <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
 	    <script src="{% static "bootstrap/js/sports_tracker1.js" %}"></script>
 	    <script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-transition.js"></script>
-            <script type="text/javascript">
-	      $(function(){
-	        $('#myCarousel').carousel();
-	      });
 
-</script>
 	    {% block extra_script %}{% endblock %}
         {% endblock %}
 

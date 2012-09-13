@@ -3,6 +3,8 @@ South==0.7.6
 dj-database-url==0.2.1
 django-extensions==0.9
 django-lockdown==0.1.1
+-e git://github.com/gabrielgrant/django-multiforloop.git@436f415eb0f140305280d00314ae31f34bbcaa0d#egg=django_multiforloop-dev
 docutils==0.9.1
 psycopg2==2.4.5
+pygraphviz==1.1
 wsgiref==0.1.2
