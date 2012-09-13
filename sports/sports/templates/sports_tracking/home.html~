@@ -9,11 +9,10 @@
 {% load sport_extras %}
 
 	
-	<dt><br></dt>
 	<table class="table table-bordered">
 	  <thead class="sport_brand">
 	    <tr>
-	      <th class="table_width_rank">Rank</th>
+	      <th class="tablehead_width_rank">Rank</th>
 	      <th class="tablehead_width_fraternity">Fraternity</th>
 	      <th class="tablehead_width_sport">{{sports.FF.display}}</th>
 	      <th class="tablehead_width_sport">{{sports.VB.display}}</th>

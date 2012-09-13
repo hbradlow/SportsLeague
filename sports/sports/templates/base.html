@@ -1,6 +1,8 @@
 
 
 
+
+
 {% load staticfiles %}
 <!DOCTYPE html>
 
@@ -13,7 +15,7 @@
         {% endblock %}
 
         {% block style_base %}
-            <link href="{% static "bootstrap/less/sports_tracker.css" %}" rel="stylesheet">
+            <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
             {% block extra_style %}{% endblock %}
         {% endblock %}
@@ -42,7 +44,9 @@
                             </a>
                             {% block site_brand %}<a class="brand" href="{% url home %}">Sports League</a>{% endblock %}
                             <div class="nav-collapse">
+
                                 {% block nav %}
+
                                 {% endblock %}
                                 {% block account_bar %}{% endblock %}
                             </div>
@@ -113,7 +117,14 @@
         {% block script_base %}
             <script src="{% static "jquery.min.js" %}"></script>
             <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
-            {% block extra_script %}{% endblock %}
+	    <script src="{% static "bootstrap/js/sports_tracker.js" %}"></script>
+            <script type="text/javascript">
+	      $(function(){
+	        $('#myCarousel').carousel();
+	      });
+
+</script>
+	    {% block extra_script %}{% endblock %}
         {% endblock %}
 
         {% block extra_body_base %}
