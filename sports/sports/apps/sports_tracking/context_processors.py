@@ -1,4 +1,4 @@
-from sports_tracking.models import Sport
+from sports_tracking.models import Sport,Fraternity
 
 def sports(request):
     sports = []
@@ -8,3 +8,6 @@ def sports(request):
         except:
             pass
     return {"sports":sports}
+
+def fraternities(request):
+    return {"fraternities":Fraternity.objects.all()}

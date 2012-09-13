@@ -5,39 +5,7 @@
 {% endblock %}
 
 {% block body_content %}
-{% load multifor %}
 {% load sport_extras %}
-
-	
-	<table class="table table-bordered">
-	  <thead class="sport_brand">
-	    <tr>
-	      <th class="tablehead_width_rank">Rank</th>
-	      <th class="tablehead_width_fraternity">Fraternity</th>
-	      <th class="tablehead_width_sport">{{sports.FF.display}}</th>
-	      <th class="tablehead_width_sport">{{sports.VB.display}}</th>
-	      <th class="tablehead_width_sport">{{sports.BB.display}}</th>
-	      <th class="tablehead_width_sport">{{sports.SR.display}}</th>
-	      <th class="tablehead_width_sport">{{sports.SB.display}}</th>
-	      <th class="tablehead_width_sport">{{sports.HY.display}}</th>
-	      <th class="tablehead_width_overall_points">Overall Points</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    {% for rank in fraternities_list|length|get_range; fraternity in fraternities_list %}
-
-	   <tr>
-		<td>{{rank}}</td>
-		<td>{{fraternity.name}}</td>
-		<td>{{fraternity|overall_points:"FF"}}</td>
-		<td>{{fraternity|overall_points:"VB"}}</td>
-	        <td>{{fraternity|overall_points:"BB"}}</td>
-		<td>{{fraternity|overall_points:"SR"}}</td>
-		<td>{{fraternity|overall_points:"SB"}}</td>
-		<td>{{fraternity|overall_points:"HY"}}</td>
-	   </tr>
-
-	    {% endfor %}
-	  </tbody>
-	</table>
+<dt><br></dt>
+{% team_table %}
 {% endblock %}

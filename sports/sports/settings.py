@@ -116,6 +116,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "sports_tracking.context_processors.sports",
+    "sports_tracking.context_processors.fraternities",
 ]
 
 ROOT_URLCONF = 'sports.urls'

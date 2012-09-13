@@ -1,26 +1,10 @@
 {% extends "base.html" %}
+{% load sport_extras %}
 
 {% block bodytitle %}
     <h1 class="body_title">{{sport.display}}</h1>
 {% endblock %}
 
 {% block body_content %}
-    <table class="table table-bordered">
-        <thead class="sport_brand">
-            <tr>
-                <th>This</th>
-                <th>This</th>
-                <th>This</th>
-                <th>This</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>This</td>
-                <td>This</td>
-                <td>This</td>
-                <td>This</td>
-            </tr>
-        </tbody>
-    </table>
+{% team_table sport %}
 {% endblock %}

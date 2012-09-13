@@ -62,6 +62,15 @@ class Fraternity(models.Model):
         for team in self.teams.all():
             points += team.games_won.filter(sport=sport).count()
         return points
+    def overall_points(self):
+        points = 0
+        for team in self.teams.all():
+            points += team.games_won.all().count()
+        return points
+    def rank(self):
+        frats = Fraternity.objects.all()
+        sorted_frats = sorted(frats, key=lambda f: f.overall_points())
+        return 1+sorted_frats.index(self)
     def __unicode__(self):
         return self.name
 
