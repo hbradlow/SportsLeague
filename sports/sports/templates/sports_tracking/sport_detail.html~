@@ -20,16 +20,14 @@
 
       <div class="carousel-inner">
         <div class="active item">
-	  <h4>Group A</h4>
           <table class="table table-bordered">
             <thead class="sport_brand">
 
               <tr>
-                <th class="tablehead_width_wltp_fraternity">Fraternity</th>
-                <th class="tablehead_width_wltp">Wins</th>
-                <th class="tablehead_width_wltp">Losses</th>
-                <th class="tablehead_width_wltp">Ties</th>
-		<th class="tablehead_width_wltp">Points</th>
+                <th class="tablehead_width_fraternity">Fraternity</th>
+                <th class="tablehead_width_sport">Wins</th>
+                <th class="tablehead_width_sport">Losses</th>
+                <th class="tablehead_width_sport">Ties</th>
               </tr>
 
             </thead>
@@ -46,17 +44,15 @@
         </div>
 
         <div class="item">
-	<h4>Group B</h4>
           <table class="table table-bordered">
             <thead class="sport_brand">
 
 	      <tr>
-                <th class="tablehead_width_wltp_fraternity">Fraternity</th>
-                <th class="tablehead_width_wltp">Wins</th>
-                <th class="tablehead_width_wltp">Losses</th>
-                <th class="tablehead_width_wltp">Ties</th>
-		<th class="tablehead_width_wltp">Points</th>
-	      </tr>
+                <th class="tablehead_width_fraternity">Fraternity</th>
+                <th class="tablehead_width_sport">Wins</th>
+                <th class="tablehead_width_sport">Losses</th>
+                <th class="tablehead_width_sport">Ties</th>
+              </tr>
 
             </thead>
             <tbody>

@@ -3,6 +3,7 @@
 
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
+
         <meta charset="utf-8" />
         <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
         {% block viewport %}
@@ -13,7 +14,7 @@
 
         {% block style_base %}
 
-            <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
+            <link href="{% static "bootstrap/less/sports_tracker.css" %}" rel="stylesheet">
 
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
             {% block extra_style %}{% endblock %}

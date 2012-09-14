@@ -1,0 +1,34 @@
+{% load multifor %}
+{% load sport_extras %}
+<table class="table table-bordered">
+    <thead class="sport_brand">
+        <tr>
+            <th class="tablehead_width_rank">Rank</th>
+            <th class="tablehead_width_fraternity">Fraternity</th>
+            {% if sport %}
+                <th class="tablehead_width_sport">{{sport.display}}</th>
+            {% else %}
+                {% for sport in sports %}
+                    <th class="tablehead_width_sport">{{sport.display}}</th>
+                {% endfor %}
+            {% endif %}
+            <th class="tablehead_width_sport">Overall Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fraternity in fraternities_list %}
+            <tr>
+            <td>{{fraternity.rank}}</td>
+            <td>{{fraternity.name}}</td>
+            {% if sport %}
+                <td>{{fraternity|overall_points:sport.type}}</td>
+            {% else %}
+                {% for sport in sports %}
+                    <td>{{fraternity|overall_points:sport.type}}</td>
+                {% endfor %}
+            {% endif %}
+            <td>{{fraternity.overall_points}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

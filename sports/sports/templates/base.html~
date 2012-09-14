@@ -1,13 +1,9 @@
-
-
-
-
-
 {% load staticfiles %}
 <!DOCTYPE html>
 
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
+
         <meta charset="utf-8" />
         <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
         {% block viewport %}
@@ -84,29 +80,7 @@
 	  </div>
 	    {% block sidebar %}
 	    <div class="span2 side_bar" style="border:2px solid #1a1914">
-<<<<<<< HEAD
-                         {% block sidebar_content %}
 
-			   <div class="sidebar-nav-fixed">
-                              <ul class="nav nav-list">
-
-				<li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
-				<li class="nav-header quarter">Fall</li>
-				<li align="center" class="side_bar_sport"><a href="{% url flag_football %}">{{sports.FF.display}}</a></li>
-				<hr align="center">
-				<li align="center" class="side_bar_sport"><a href="{% url volleyball %}">{{sports.VB.display}}</a></li>
-				<li class="nav-header quarter">Winter</li>
-
-				<li align="center" class="side_bar_sport"><a href="{% url basketball %}">{{sports.BB.display}}</a></li>
-				<hr align="center" id="nav_divider">
-				<li align="center" class="side_bar_sport"><a href="{% url soccer %}">{{sports.SR.display}}</a></li>
-				<li class="nav-header quarter">Spring</li>
-				<li align="center" class="side_bar_sport"><a href="{% url softball %}">{{sports.SB.display}}</a></li>
-				<hr align="center" id="nav_divider">
-
-
-				<li align="center" class="side_bar_sport"><a href="{% url hockey %}">{{sports.HY.display}}</a></li>
-=======
              {% block sidebar_content %}
 			   <div class="sidebar-nav-fixed">
                   <ul class="nav nav-list">
@@ -129,7 +103,7 @@
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
                         {% endif %}
                     {% endfor %}
->>>>>>> a0e066b83af105f5b39b4dc69e9c61794e652c92
+
 			      </ul>
 			   </div>
 			 {% endblock %}

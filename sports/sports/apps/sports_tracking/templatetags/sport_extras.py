@@ -45,8 +45,8 @@ def overall_points(fraternity, sport_type):
     return fraternity.overall_points_for_sport( sport )
 
 @register.filter
-def group(sport_type, group_name):
-    sport = Sport.objects.filter(type=sport_type)[0]
+def group(sport, group_name):
+
     return sport.group_set.get(group=group_name).fraternities.all()
 
 @register.inclusion_tag("sports_tracking/team_table.html",takes_context=True)

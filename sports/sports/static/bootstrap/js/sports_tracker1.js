@@ -16,3 +16,7 @@ $("#carousel_group_B").click(function(){
   $('.carousel').carousel('pause');
   return false; 
  }); 
+
+$(function(){
+	$('.nav-tabs').button('toggle');
+    });

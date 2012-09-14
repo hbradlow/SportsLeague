@@ -38,9 +38,17 @@ def list_iter( lists ):
 
 @register.filter
 def overall_points(fraternity, sport_type):
-    sport = Sport.objects.filter(type=sport_type)[0] #in case there is more than one sport of that type for some reason (HACK)
+    try:
+        sport = Sport.objects.get(type=sport_type)
+    except Sport.DoesNotExist:
+        return "N/A"
     return fraternity.overall_points_for_sport( sport )
 
 @register.filter
 def group(sport_type, group_name):
-    return sport_type.group_set.get(group=group_name).fraternities.all()
+    sport = Sport.objects.filter(type=sport_type)[0]
+    return sport.group_set.get(group=group_name).fraternities.all()
+
+@register.inclusion_tag("sports_tracking/team_table.html",takes_context=True)
+def team_table(context,sport=None):
+    return {"sport":sport,"request":context['request'],"fraternities":context['fraternities'],"sports":context["sports"]}

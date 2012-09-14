@@ -716,13 +716,16 @@ table{background-color:rgba(26, 25, 20, 0.9);color:#ffd339;table-layout:fixed;}
 .table th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);overflow:hidden;}
 .table th.tablehead_width_rank{width:40px;}
 .table th.tablehead_width_fraternity{width:120px;}
+.table th.tablehead_width_wltp_fraternity{width:400px;}
+.table th.tablehead_width_wltp{width:50px;}
 .table th.tablehead_width_sport{width:80px;}
 .table th.tablehead_width_overall_points{width:100px;}
 .table-bordered,.table-bordered th,.table-bordered td{border:1px solid rgba(26, 25, 20, 0.9);}
 .table tbody tr:hover td,.table tbody tr:hover th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
 .quarter{background:#ffd339;color:rgba(26, 25, 20, 0.9);}
 .body_title{color:rgba(26, 25, 20, 0.9);margin-left:28px;margin-bottom:12px;margin-top:6px;}
-.side_bar{background:#ffd339;}
+#carousel_group_A,#carousel_group_B{background:rgba(26, 25, 20, 0.9);color:#ffd339;}
+.side_bar{background:rgba(26, 25, 20, 0.9);}
 .side_bar_sport{color:#ffd339;padding:5px;}
 .nav .nav-header{color:rgba(26, 25, 20, 0.9);font-weight:bold;font-size:12px;}
 .nav>li>a{color:#d2a300;}.nav>li>a:hover{background-color:#d2a300;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
