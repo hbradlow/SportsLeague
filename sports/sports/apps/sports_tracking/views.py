@@ -30,3 +30,6 @@ def softball(request):
 
 def hockey(request):
     return render(request,"sports_tracking/hockey.html")
+
+def test1(request):
+    return render(request,"sports_tracking/test1.html")

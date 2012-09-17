@@ -14,10 +14,13 @@ $("#carousel_group_B").click(function(){
   var group_B = 1; 
   $('.carousel').carousel(group_B); 
   $('.carousel').carousel('pause');
-  $('.carousel').addClass('quarter');
   return false; 
  }); 
 
 $(function(){
 	$('.nav-tabs').button('toggle');
     });
+
+$("#hide").click(function(){
+	$("#tournament_table").hide()
+	    });
