@@ -17,7 +17,11 @@
     </thead>
     <tbody>
         {% for fraternity in fraternities %}
-            {% with fraternity|stats:sport.type as data %}
+            {% comment %}
+                {# you can use the stats for a fraternity like this #}
+                {% with fraternity|stats:sport.type as data %}
+                {% endwith %}
+            {% endcomment %}
                 <tr>
                 <td>{{fraternity.rank}}</td>
                 <td>{{fraternity.name}}</td>
@@ -30,7 +34,6 @@
                 {% endif %}
                 <td>{{fraternity.overall_points}}</td>
                 </tr>
-            {% endwith %}
         {% endfor %}
     </tbody>
 </table>
