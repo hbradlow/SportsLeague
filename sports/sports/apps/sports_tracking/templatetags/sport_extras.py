@@ -54,6 +54,14 @@ def overall_points(fraternity, sport_type):
     return fraternity.overall_points_for_sport( sport )
 
 @register.filter
+def season(sports, season):
+    filtered_sports = []
+    for sport in sports:
+        if sport.season == season:
+            filtered_sports.append(sport)
+    return filtered_sports
+
+@register.filter
 def group(sport, group_name):
 
     return sport.group_set.get(group=group_name).fraternities.all()
