@@ -17,18 +17,20 @@
     </thead>
     <tbody>
         {% for fraternity in fraternities %}
-            <tr>
-            <td>{{fraternity.rank}}</td>
-            <td>{{fraternity.name}}</td>
-            {% if sport %}
-                <td>{{fraternity|overall_points:sport.type}}</td>
-            {% else %}
-                {% for sport in sports %}
+            {% with fraternity|stats:sport.type as data %}
+                <tr>
+                <td>{{fraternity.rank}}</td>
+                <td>{{fraternity.name}}</td>
+                {% if sport %}
                     <td>{{fraternity|overall_points:sport.type}}</td>
-                {% endfor %}
-            {% endif %}
-            <td>{{fraternity.overall_points}}</td>
-            </tr>
+                {% else %}
+                    {% for sport in sports %}
+                        <td>{{fraternity|overall_points:sport.type}}</td>
+                    {% endfor %}
+                {% endif %}
+                <td>{{fraternity.overall_points}}</td>
+                </tr>
+            {% endwith %}
         {% endfor %}
     </tbody>
 </table>

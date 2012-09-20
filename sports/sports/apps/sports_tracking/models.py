@@ -50,8 +50,10 @@ class Team(models.Model):
 
 class Game(models.Model):
     teams = models.ManyToManyField(Team)
-    winner = models.ForeignKey(Team,related_name="games_won")
+    winner = models.ForeignKey(Team,related_name="games_won",null=True)
+    is_tie = models.BooleanField(default=False)
     sport = models.ForeignKey(Sport)
+    parent = models.ForeignKey("self",null=True)
 
 class Fraternity(models.Model):
     name = models.CharField(max_length="200")
@@ -62,6 +64,22 @@ class Fraternity(models.Model):
         for team in self.teams.all():
             points += team.games_won.filter(sport=sport).count()
         return points
+    def stats_for_sport(self,sport):
+        """
+            Compiles some data about this fraternity for a given sport.
+
+            Not sure what to do about "points" yet. How is this calculated?
+        """
+        data = {"wins":0,"losses":0,"ties":0,"points":0}
+        for team in self.teams.all():
+            for game in team.game_set.all():
+                if game.winner is team:
+                    data['wins']+=1
+                elif game.is_tie:
+                    data['ties']+=1
+                else:
+                    data['losses']+=1
+        return data
     def overall_points(self):
         points = 0
         for team in self.teams.all():

@@ -37,6 +37,15 @@ def list_iter( lists ):
         print x
 
 @register.filter
+def stats(fraternity, sport_type):
+    from collections import defaultdict
+    try:
+        sport = Sport.objects.get(type=sport_type)
+    except Sport.DoesNotExist:
+        return defaultdict(lambda: "NA")
+    return fraternity.stats_for_sport( sport )
+
+@register.filter
 def overall_points(fraternity, sport_type):
     try:
         sport = Sport.objects.get(type=sport_type)
