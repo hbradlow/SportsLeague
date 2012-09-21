@@ -1,9 +1,5 @@
-
-
-
-
-
 {% load staticfiles %}
+{% load sport_extras %}
 <!DOCTYPE html>
 
 <html lang="{{ LANGUAGE_CODE }}">
@@ -113,25 +109,26 @@
                     <li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
                     <li class="nav-header quarter">Fall</li>
 
-                    {% for sport in sports %}
-                        {% if sport.season == "FL" %}
-
+                    {% for sport in sports|season:"FL" %}
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
-                        {% endif %}
+                            {% if not forloop.last %}
+                                <hr />
+                            {% endif %}
                     {% endfor %}
                     <li class="nav-header quarter">Winter</li>
-                    {% for sport in sports %}
-
-                        {% if sport.season == "WR" %}
+                    {% for sport in sports|season:"WR" %}
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
-                        {% endif %}
+                            {% if not forloop.last %}
+                                <hr />
+                            {% endif %}
                     {% endfor %}
                     <li class="nav-header quarter">Spring</li>
 
-                    {% for sport in sports %}
-                        {% if sport.season == "SG" %}
+                    {% for sport in sports|season:"SG" %}
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
-                        {% endif %}
+                            {% if not forloop.last %}
+                                <hr />
+                            {% endif %}
                     {% endfor %}
 
 
