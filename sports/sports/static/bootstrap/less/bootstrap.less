@@ -64,6 +64,7 @@
 //Sports tracker app
 @yellow: #ffd339;
 @black: fade(#1a1914, 90%);
+@dark_yellow: darker(@yellow, 20%);
 
 table{ 
     background-color: @black;
@@ -123,9 +124,29 @@ table{
     margin-top: 6px;
     }
 
-#carousel_group_A, #carousel_group_B, #hide, #show{
-    background: @black;
-    color: @yellow;
+.section_divider{
+    background-color: @dark_yellow;
+    }
+
+#carousel_group_A, #show,{
+    color:@black;
+    margin-top: 4px;
+    margin-left: 2px;
+     &:hover {
+        color: darken(@yellow, 20%);
+        text-decoration: none;
+        }
+    }
+    
+#carousel_group_B, #hide,{
+    border-left: 5px solid transparent;
+    color:@black;
+    margin-top: 4px;
+    margin-left: 5px;
+      &:hover {
+        color: darken(@yellow, 20%);
+        text-decoration: none;
+        }
     }
 
 .side_bar{

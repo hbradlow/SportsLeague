@@ -724,7 +724,9 @@ table{background-color:rgba(26, 25, 20, 0.9);color:#ffd339;table-layout:fixed;}
 .table tbody tr:hover td,.table tbody tr:hover th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
 .quarter{background:#ffd339;color:rgba(26, 25, 20, 0.9);}
 .body_title{color:rgba(26, 25, 20, 0.9);margin-left:28px;margin-bottom:12px;margin-top:6px;}
-#carousel_group_A,#carousel_group_B,#hide,#show{background:rgba(26, 25, 20, 0.9);color:#ffd339;}
+.section_divider{background-color:darker(#ffd339, 20%);}
+#carousel_group_A,#show{color:rgba(26, 25, 20, 0.9);margin-top:4px;margin-left:2px;}#carousel_group_A:hover,#show:hover{color:#d2a300;text-decoration:none;}
+#carousel_group_B,#hide{border-left:5px solid transparent;color:rgba(26, 25, 20, 0.9);margin-top:4px;margin-left:5px;}#carousel_group_B:hover,#hide:hover{color:#d2a300;text-decoration:none;}
 .side_bar{background:rgba(26, 25, 20, 0.9);}
 .side_bar_sport{color:#ffd339;padding:5px;}
 .nav .nav-header{color:rgba(26, 25, 20, 0.9);font-weight:bold;font-size:12px;}
