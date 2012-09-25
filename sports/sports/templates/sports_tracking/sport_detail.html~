@@ -1,6 +1,7 @@
 
 
 
+
 {% extends "base.html" %}
 {% load sport_extras %}
 
@@ -43,6 +44,7 @@
 
 
             </thead>
+
 
             <tbody>
 
@@ -99,8 +101,8 @@
       <div>
 	   <h2 style="float: left">Tournament</h2>
 	    <br>
-            <div><a href="#" id="hide" style="float: right">Hide</a></div>
-            <div><a href="#" id="show" style="float: right">Show</a></div>	    
+            <div><a href="#" id="hide" style="float: right"><b>Hide</b></a></div>
+            <div><a href="#" id="show" style="float: right"><b>Show</b></a></div>	    
       </div>
       <br><hr class="section_divider"><br>
        <table class="tournament_table" id="tournament_table" summary="Tournament Bracket">

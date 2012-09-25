@@ -724,14 +724,17 @@ table{background-color:rgba(26, 25, 20, 0.9);color:#ffd339;table-layout:fixed;}
 .table tbody tr:hover td,.table tbody tr:hover th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
 .quarter{background:#ffd339;color:rgba(26, 25, 20, 0.9);}
 .body_title{color:rgba(26, 25, 20, 0.9);margin-left:28px;margin-bottom:12px;margin-top:6px;}
-#carousel_group_A,#show{color:rgba(26, 25, 20, 0.9);}
-#carousel_group_B,#hide{border-left:thick solid darker(#ffd339, 20%);color:rgba(26, 25, 20, 0.9);}
+.section_divider{background-color:darker(#ffd339, 20%);}
+#carousel_group_A,#show{color:rgba(26, 25, 20, 0.9);margin-top:4px;margin-left:2px;}#carousel_group_A:hover,#show:hover{color:#d2a300;text-decoration:none;}
+#carousel_group_B,#hide{border-left:5px solid transparent;color:rgba(26, 25, 20, 0.9);margin-top:4px;margin-left:5px;}#carousel_group_B:hover,#hide:hover{color:#d2a300;text-decoration:none;}
 .side_bar{background:rgba(26, 25, 20, 0.9);}
 .side_bar_sport{color:#ffd339;padding:5px;}
+.nav li.dropdown ul.dropdown-menu li:HOVER ul{display:block;position:absolute;left:100%;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
+.nav li.dropdown ul.dropdown-menu ul{display:none;float:right;position:relative;top:auto;margin-top:-30px;}
 .nav .nav-header{color:rgba(26, 25, 20, 0.9);font-weight:bold;font-size:12px;}
 .nav>li>a{color:#d2a300;}.nav>li>a:hover{background-color:#d2a300;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
 .navbar .brand{color:#ffd339;margin-left:136px;}
 hr{margin:0px;color:#d2a300;background-color:#d2a300;padding:1px;border-bottom:0px;border-top:0px;height:.5px;}
 #header{background-color:rgba(26, 25, 20, 0.9);border-top:6px solid #ffd339;width:1424px;}
 .tournament_table{border:solid 4px black;font:small;color:rgba(26, 25, 20, 0.9);background-color:rgba(26, 25, 20, 0.9);display:none;}
-.tournament{vertical-align:middle;width:102px;border:solid 3px black;background-color:#ffd339;margin:5px;padding:5px 5px 2px 5px;align:middle;}
+.tournament{vertical-align:middle;width:102px;border:solid 3px black;background-color:#ffd339;margin:5px;padding:5px 5px 2px 5px;}

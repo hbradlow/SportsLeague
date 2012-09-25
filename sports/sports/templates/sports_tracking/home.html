@@ -1,11 +1,183 @@
 {% extends "base.html" %}
 
 {% block bodytitle %}
-<h1 class="body_title">Overall Ranking</h1>
+<h1 class="body_title">Sports Trophy</h1>
 {% endblock %}
-
+<!-- Need a major or minor option for each sport -->
 {% block body_content %}
 {% load sport_extras %}
+<div>
+<!-- Section Header: Overall Ranking -->
+   <div>
+     <h2 style="float: left">Overall Ranking</h2>
+     <br>
+   </div>
+   <br><hr class="section_divider"><br>
+<!-- End Section Header -->
 
-{% team_table %}
+<table class="table table-bordered">
+    <thead class="sport_brand">
+        <tr>
+            <th class="tablehead_width_rank">Rank</th>
+
+            <th class="tablehead_width_fraternity_overall">Fraternity</th>
+            <th class="tablehead_width_sport">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fraternity in fraternities %}
+            {% comment %}
+                {# you can use the stats for a fraternity like this #}
+                {% with fraternity|stats:sport.type as data %}
+                {% endwith %}
+            {% endcomment %}
+                <tr>
+                <td>{{fraternity.rank}}</td>
+                <td>{{fraternity.name}}</td>
+                <td>{{fraternity.overall_points}}</td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<div>
+<!-- Section Header: Major Sports Overall Ranking -->
+   <div>
+     <h2 style="float: left">Major Sports</h2>
+     <br>
+     <div><a href="#" id="hide_major_sports" style="float: right"><b>Hide</b></a></div>
+     <div><a href="#" id="show_major_sports" style="float: right"><b>Show</b></a></div>
+   </div>
+   <br><hr class="section_divider"><br>
+<!-- End Section Header -->
+
+<table class="table table-bordered" id="major_sports">
+    <thead class="sport_brand">
+        <tr>
+            <th class="tablehead_width_rank">Rank</th>
+            <th class="tablehead_width_fraternity">Fraternity</th>
+            {% if sport %}
+                <th class="tablehead_width_sport">{{sport.display}}</th>
+            {% else %}
+                {% for sport in sports %}
+                    <th class="tablehead_width_sport">{{sport.display}}</th>
+                {% endfor %}
+            {% endif %}
+            <th class="tablehead_width_sport">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fraternity in fraternities %}
+            {% comment %}
+                {# you can use the stats for a fraternity like this #}
+                {% with fraternity|stats:sport.type as data %}
+                {% endwith %}
+            {% endcomment %}
+                <tr>
+                <td>{{fraternity.rank}}</td>
+                <td>{{fraternity.name}}</td>
+                {% if sport %}
+                    <td>{{fraternity|overall_points:sport.type}}</td>
+                {% else %}
+                    {% for sport in sports %}
+                        <td>{{fraternity|overall_points:sport.type}}</td>
+                    {% endfor %}
+                {% endif %}
+                <!-- Need Overall points for just major sports -->
+		<td>{{fraternity.overall_points}}</td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<div>
+<!-- Section Header: Minor Sports Overall Ranking -->
+   <div>
+     <h2 style="float: left">Minor Sports</h2>
+     <br>
+   </div>
+   <br><hr class="section_divider"><br>
+<!-- End Section Header -->
+
+<table class="table table-bordered">
+    <thead class="sport_brand">
+        <tr>
+            <th class="tablehead_width_rank">Rank</th>
+            <th class="tablehead_width_fraternity">Fraternity</th>
+	    <!-- Need sport_minor.display -->
+            {% if sport %}
+                <th class="tablehead_width_sport">{{sport.display}}</th>
+            {% else %}
+                {% for sport in sports %}
+                    <th class="tablehead_width_sport">{{sport.display}}</th>
+                {% endfor %}
+            {% endif %}
+            <th class="tablehead_width_sport">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fraternity in fraternities %}
+            {% comment %}
+                {# you can use the stats for a fraternity like this #}
+                {% with fraternity|stats:sport.type as data %}
+                {% endwith %}
+            {% endcomment %}
+                <tr>
+                <td>{{fraternity.rank}}</td>
+                <td>{{fraternity.name}}</td>
+                {% if sport %}
+		<!-- Need minor overall points filter -->
+                    <td>{{fraternity|overall_points:sport.type}}</td>
+                {% else %}
+                    {% for sport in sports %}
+                    <td>{{fraternity|overall_points:sport.type}}</td>
+                    {% endfor %}
+                {% endif %}
+	            <td>{{fraternity.overall_points}}</td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Section Header: Meetings Attended -->
+   <div>
+     <h2 style="float: left">Meetings Attended</h2>
+     <br>
+   </div>
+   <br><hr class="section_divider"><br>
+<!-- End Section Header -->
+
+<!-- We need to make meetings attended for each fraternity -->
+<table class="table table-bordered">
+    <thead class="sport_brand">
+        <tr>
+            <th class="tablehead_width_rank">Rank</th>
+
+            <th class="tablehead_width_fraternity_overall">Fraternity</th>
+            <th class="tablehead_width_sport">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fraternity in fraternities %}
+            {% comment %}
+                {# you can use the stats for a fraternity like this #}
+                {% with fraternity|stats:sport.type as data %}
+                {% endwith %}
+            {% endcomment %}
+                <tr>
+                <td>{{fraternity.rank}}</td>
+                <td>{{fraternity.name}}</td>
+                <td>{{fraternity.overall_points}}</td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+</div>
+
+
 {% endblock %}
