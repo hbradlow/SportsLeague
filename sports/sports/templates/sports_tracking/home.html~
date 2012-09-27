@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
+
 {% block bodytitle %}
 <h1 class="body_title">Sports Trophy</h1>
 {% endblock %}
 <!-- Need a major or minor option for each sport -->
-{% block body_content %}
 {% load sport_extras %}
+{% block body_content %}
+
 <div>
 <!-- Section Header: Overall Ranking -->
    <div>
@@ -13,6 +15,7 @@
      <br>
    </div>
    <br><hr class="section_divider"><br>
+
 <!-- End Section Header -->
 
 <table class="table table-bordered">
@@ -29,6 +32,7 @@
             {% comment %}
                 {# you can use the stats for a fraternity like this #}
                 {% with fraternity|stats:sport.type as data %}
+
                 {% endwith %}
             {% endcomment %}
                 <tr>
@@ -44,15 +48,17 @@
 <div>
 <!-- Section Header: Major Sports Overall Ranking -->
    <div>
+
+
      <h2 style="float: left">Major Sports</h2>
      <br>
-     <div><a href="#" id="hide_major_sports" style="float: right"><b>Hide</b></a></div>
-     <div><a href="#" id="show_major_sports" style="float: right"><b>Show</b></a></div>
+     <div><a href="#" class="hide1" id="hide_major_sports" style="float: right"><b>Hide</b></a></div>
+     <div><a href="#" class="show" id="show_major_sports" style="float: right"><b>Show</b></a></div>
    </div>
    <br><hr class="section_divider"><br>
 <!-- End Section Header -->
 
-<table class="table table-bordered" id="major_sports">
+<table class="table table-bordered hide_element" id="major_sports">
     <thead class="sport_brand">
         <tr>
             <th class="tablehead_width_rank">Rank</th>
@@ -60,6 +66,7 @@
             {% if sport %}
                 <th class="tablehead_width_sport">{{sport.display}}</th>
             {% else %}
+
                 {% for sport in sports %}
                     <th class="tablehead_width_sport">{{sport.display}}</th>
                 {% endfor %}
@@ -69,6 +76,7 @@
     </thead>
     <tbody>
         {% for fraternity in fraternities %}
+
             {% comment %}
                 {# you can use the stats for a fraternity like this #}
                 {% with fraternity|stats:sport.type as data %}
@@ -76,6 +84,7 @@
             {% endcomment %}
                 <tr>
                 <td>{{fraternity.rank}}</td>
+
                 <td>{{fraternity.name}}</td>
                 {% if sport %}
                     <td>{{fraternity|overall_points:sport.type}}</td>
@@ -90,6 +99,7 @@
         {% endfor %}
     </tbody>
 </table>
+
 </div>
 
 <div>
@@ -97,11 +107,13 @@
    <div>
      <h2 style="float: left">Minor Sports</h2>
      <br>
+     <div><a href="#" class="hide1" id="hide_minor_sports" style="float: right"><b>Hide</b></a></div>
+     <div><a href="#" class="show" id="show_minor_sports" style="float: right"><b>Show</b></a></div>
    </div>
    <br><hr class="section_divider"><br>
 <!-- End Section Header -->
 
-<table class="table table-bordered">
+<table class="table table-bordered hide_element" id="minor_sports">
     <thead class="sport_brand">
         <tr>
             <th class="tablehead_width_rank">Rank</th>
@@ -140,6 +152,45 @@
         {% endfor %}
     </tbody>
 </table>
+
+<!-- Section Header: Meetings Attended -->
+   <div>
+     <h2 style="float: left">Meetings Attended</h2>
+     <br>
+     <div><a href="#" class="hide1" id="hide_meetings_sports" style="float: right"><b>Hide</b></a></div>
+     <div><a href="#" class="show" id="show_meetings_sports" style="float: right"><b>Show</b></a></div>
+   </div>
+   <br><hr class="section_divider"><br>
+<!-- End Section Header -->
+
+<!-- Need to make meetings attended for each fraternity -->
+<table class="table table-bordered hide_element" id="meeting_sports">
+    <thead class="sport_brand">
+        <tr>
+            <th class="tablehead_width_rank">Rank</th>
+
+            <th class="tablehead_width_fraternity_overall">Fraternity</th>
+            <th class="tablehead_width_sport">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fraternity in fraternities %}
+            {% comment %}
+                {# you can use the stats for a fraternity like this #}
+                {% with fraternity|stats:sport.type as data %}
+                {% endwith %}
+            {% endcomment %}
+                <tr>
+                <td>{{fraternity.rank}}</td>
+                <td>{{fraternity.name}}</td>
+                <td>{{fraternity.overall_points}}</td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
 </div>
 
 

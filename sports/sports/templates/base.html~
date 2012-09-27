@@ -1,5 +1,8 @@
 
 
+
+
+
 {% load staticfiles %}
 {% load sport_extras %}
 <!DOCTYPE html>
@@ -11,7 +14,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% endblock %}
         {% block style_base %}
-            <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
+            <link href="{% static "bootstrap/less/sports_tracker.css" %}" rel="stylesheet">
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
           {% block extra_style %}{% endblock %}
         {% endblock %}
@@ -42,8 +45,11 @@
                                 {% block account_bar %}{% endblock %}
                             </div>
                         {% endblock %}
+
                     </div>
+
                 </div>
+
             </div>
 
         {% endblock %}
@@ -70,13 +76,14 @@
                                 <hr />
                             {% endif %}
                     {% endfor %}
-			    <li class="dropdown">
+			    <li align="center" class="dropdown side_bar_sport">
 			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				Account
 				<b class="caret"></b>
 			      </a>
-			      <ul class="dropdown-menu">
-				<li>...</li>
+			      <ul class="dropdown-menu side_bar">
+				<li class="side_bar_sport">Tennis</li>
+				<li class="side_bar_sport">Ultimate Frisbee</li>
 			      </ul>
 			    </li>
 	                    <li class="nav-header quarter">Winter</li>
@@ -87,6 +94,8 @@
                             {% endif %}
                     {% endfor %}
                     <li class="nav-header quarter">Spring</li>
+
+
                     {% for sport in sports|season:"SG" %}
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
                             {% if not forloop.last %}
@@ -119,7 +128,7 @@
         {% block script_base %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
             <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
-	    <script src="{% static "bootstrap/js/sports_tracker3.js" %}"></script>
+	    <script src="{% static "bootstrap/js/sports_tracker5.js" %}"></script>
 	    <script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-transition.js"></script>
 	    {% block extra_script %}{% endblock %}
         {% endblock %}

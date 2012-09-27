@@ -2,110 +2,91 @@
 
 
 
+
+
 {% extends "base.html" %}
+
 {% load sport_extras %}
 
 {% block bodytitle %}
-
     <h1 class="body_title">{{sport.display}}</h1>
 {% endblock %}
-
-
 {% block body_content %}
-
+<!-- Section Header: Groups -->    
    <div> 
      <h2 style="float: left">Groups</h2>
      <br>
+
      <div><a href="#myCarousel" id="carousel_group_B" style="float: right"><b>Group B</b></a></div>
+
      <div><a href="#myCarousel" id="carousel_group_A" style="float: right"><b>Group A</b></a></div>
    </div>
    <br><hr class="section_divider"><br>
+<!-- End Section Header -->
+
   
    <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="active item">
-
 	  <h4>Group A</h4>
           <table class="table table-bordered">
-
             <thead class="sport_brand">
-
-
               <tr>
                 <th class="tablehead_width_wltp_fraternity">Fraternity</th>
 
-
                 <th class="tablehead_width_wltp">Wins</th>
                 <th class="tablehead_width_wltp">Losses</th>
                 <th class="tablehead_width_wltp">Ties</th>
 		<th class="tablehead_width_wltp">Points</th>
               </tr>
-
-
-
             </thead>
 
-
             <tbody>
-
               {% for fraternity in sport|group:"A" %}
-
 	      <tr>
                 <td>{{fraternity.name}}</td>
-
               </tr>
-
               {% endfor %}
-
             </tbody>
           </table>
-
-
         </div>
         <div class="item">
+
 	<h4>Group B</h4>
-
           <table class="table table-bordered">
-
-
             <thead class="sport_brand">
-
 	      <tr>
-
                 <th class="tablehead_width_wltp_fraternity">Fraternity</th>
                 <th class="tablehead_width_wltp">Wins</th>
+
                 <th class="tablehead_width_wltp">Losses</th>
                 <th class="tablehead_width_wltp">Ties</th>
-
 		<th class="tablehead_width_wltp">Points</th>
-
 	      </tr>
-
             </thead>
             <tbody>
                {% for fraternity in sport|group:"B" %}
-
                <tr>
                  <td>{{fraternity.name}}</td>
                </tr>
-
                {% endfor %}
             </tbody>
           </table>
-
          </div>
         </div>
      </div>
      
      <div>
-      <div>
+<!-- Section Header: Tournament -->    
+          <div>
 	   <h2 style="float: left">Tournament</h2>
 	    <br>
-            <div><a href="#" id="hide" style="float: right"><b>Hide</b></a></div>
-            <div><a href="#" id="show" style="float: right"><b>Show</b></a></div>	    
-      </div>
+	    <div><a href="javascript:void(0)" class="hide1" id="hide_tournaments"  style="float: right"><b>Hide</b></a></div>
+            <div><a href="javascript:void(0)" class="show" id="show_tournaments" style="float: right"><b>Show</b></a></div>	    
+	  </div>
       <br><hr class="section_divider"><br>
-       <table class="tournament_table" id="tournament_table" summary="Tournament Bracket">
+<!-- End Section Header -->
+       <table class="tournament_table hide_element" id="tournament_table" summary="Tournament Bracket">
 	 <tr>
 	   <td><p class="tournament" align="center">Pi kappa Alpha</p></td>
 	   <td rowspan="2"><p class="tournament" align="center">team name</p></td>
@@ -124,13 +105,12 @@
 	   <td rowspan="2"><p class="tournament" align="center">team name</p></td>
 	   <td><p class="tournament" align="center">6. team name</p></td>
 	 </tr>
+
+
 	 <tr>
 	   <td><p class="tournament" align="center">7. team name</p></td>
 	   <td><p class="tournament" align="center">8. team name</p></td>
 	 </tr>
        </table>
      </div>
-
-
 {% endblock %}
-
