@@ -33,6 +33,8 @@ class Sport(models.Model):
     )
     season = models.CharField(max_length="300", choices=SEASON_CHOICES, default=FALL)
 
+    is_major = models.BooleanField(default=True)
+
     def display(self):
         return self.get_type_display()
 
@@ -80,10 +82,13 @@ class Fraternity(models.Model):
                 else:
                     data['losses']+=1
         return data
-    def overall_points(self):
+    def overall_points(self,major_only=True):
         points = 0
         for team in self.teams.all():
-            points += team.games_won.all().count()
+            if major_only:
+                points += team.games_won.filter(sport__is_major=True).count()
+            else:
+                points += team.games_won.all().count()
         return points
     def rank(self):
         frats = Fraternity.objects.all()
@@ -91,6 +96,11 @@ class Fraternity(models.Model):
         return 1+sorted_frats.index(self)
     def __unicode__(self):
         return self.name
+
+class Meeting(models.Model):
+    description = models.TextField(null=True)
+    date = models.DateTimeField()
+    fraternities_attended = models.ManyToManyField(Fraternity)
 
 class Group(models.Model):
     GROUP_A = 'A'
