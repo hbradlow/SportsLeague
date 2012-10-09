@@ -52,3 +52,6 @@ $("#hide_tournaments").click(function(){
 $("#show_tournaments").click(function(){
 	$("#tournament_table").show("slow")
             });
+
+
+

@@ -720,6 +720,7 @@ table{background-color:rgba(26, 25, 20, 0.9);color:#ffd339;table-layout:fixed;}
 .table th.tablehead_width_wltp_fraternity{width:400px;}
 .table th.tablehead_width_wltp{width:50px;}
 .table th.tablehead_width_sport{width:80px;}
+.table th.tablehead_width_minor{width:66px;}
 .table th.tablehead_width_overall_points{width:100px;}
 .table-bordered,.table-bordered th,.table-bordered td{border:1px solid rgba(26, 25, 20, 0.9);}
 .table tbody tr:hover td,.table tbody tr:hover th{background-color:#ffd339;color:rgba(26, 25, 20, 0.9);font-weight:bold;}

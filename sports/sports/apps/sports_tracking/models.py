@@ -12,6 +12,13 @@ class Sport(models.Model):
     SOCCER = 'SR'
     SOFTBALL = 'SB'
     HOCKEY = 'HY'
+    TENNIS = 'TS'
+    ULTIMATE_FRISBEE = 'UF'
+    WRESTLING= 'WG'
+    TRACK = 'TK'
+    SPORTS_TRIVIA = 'ST'
+    SWIMMING = 'SG'
+    BOWLING = 'BG'
     SPORTS_CHOICES = (
         (BASKETBALL, 'Basketball'),
         (FLAG_FOOTBALL, 'Flag Football'),
@@ -19,6 +26,13 @@ class Sport(models.Model):
         (SOCCER, 'Soccer'),
         (SOFTBALL, 'Softball'),
         (HOCKEY, 'Hockey'),
+        (TENNIS, 'Tennis'),
+        (ULTIMATE_FRISBEE, 'Ultimate Frisbee'),
+        (WRESTLING, 'Wrestling'),
+        (TRACK, 'Track'),
+        (SPORTS_TRIVIA, 'Sports Trivia'),
+        (SWIMMING, 'Swimming'),
+        (BOWLING, 'Bowling'),
     )
     type = models.CharField(max_length="300",choices=SPORTS_CHOICES, default=BASKETBALL)
     slug = AutoSlugField(populate_from="type",unique=True)

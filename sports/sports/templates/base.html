@@ -3,6 +3,8 @@
 
 
 
+
+
 {% load staticfiles %}
 {% load sport_extras %}
 <!DOCTYPE html>
@@ -14,7 +16,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% endblock %}
         {% block style_base %}
-            <link href="{% static "bootstrap/less/sports_tracker.css" %}" rel="stylesheet">
+
+            <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
           {% block extra_style %}{% endblock %}
         {% endblock %}
@@ -26,12 +29,18 @@
             {% block extra_head %}{% endblock %}
         {% endblock %}
     </head>
+
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+
         {% block topbar_base %}
+
+
             <div class="navbar {% block navbar_class %}navbar-fixed-top{% endblock %}">
+
                 <div class="navbar-inner">
                     <div class="container" id="header">
                         {% block topbar %}
+
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -39,7 +48,10 @@
 
                             </a>
                             {% block site_brand %}<a class="brand" href="{% url home %}">Sports League</a>{% endblock %}
+
                             <div class="nav-collapse">
+
+
                                 {% block nav %}
                                 {% endblock %}
                                 {% block account_bar %}{% endblock %}
@@ -52,8 +64,10 @@
 
             </div>
 
+
         {% endblock %}
         {% block body_base %}
+
 
         <div class="container" style="margin-top:80px;">  
 	{% include "_messages.html" %}
@@ -68,32 +82,49 @@
              {% block sidebar_content %}
 			   <div class="sidebar-nav-fixed">
                   <ul class="nav nav-list">
+
                     <li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
                     <li class="nav-header quarter">Fall</li>
                     {% for sport in sports|season:"FL" %}
+
+		         {% if sport.is_major %}
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
-                            {% if not forloop.last %}
+			    {% if not forloop.last %}
                                 <hr />
                             {% endif %}
+			 {% endif %} 	
                     {% endfor %}
 				<hr />
 			    <li align="center" class="dropdown side_bar_sport">
 			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				Minor Sports
+
 				<b class="caret"></b>
 			      </a>
+
 			      <ul class="dropdown-menu side_bar">
-				<li class="side_bar_sport">Tennis</li>
-				<li class="side_bar_sport">Ultimate Frisbee</li>
+
+				{% for sport in sports|season:"FL" %}
+				  {% if not sport.is_major %}
+				    <li align="center" class="side_bar_sport">{{sport.display}}</li>
+				    {% if not forloop.last %}
+                                    <hr />
+				    {% endif %}
+				  {% endif %}
+				{% endfor %}
 			      </ul>
 			    </li>
 	                    <li class="nav-header quarter">Winter</li>
                     {% for sport in sports|season:"WR" %}
+			 {% if sport.is_major %}   
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
                             {% if not forloop.last %}
                                 <hr />
+
                             {% endif %}
+			 {% endif %}
                     {% endfor %}
+
 				<hr />
                             <li align="center" class="dropdown side_bar_sport">
 			            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -101,31 +132,48 @@
                                 <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu side_bar">
-                                <li class="side_bar_sport">Wrestling</li>
-                                <li class="side_bar_sport">Track</li>
+				{% for sport in sports|season:"WR" %}
+                                  {% if not sport.is_major %}
+                                    <li align="center" class="side_bar_sport">{{sport.display}}</li>
+                                    {% if not forloop.last %}
+                                    <hr />
+                                    {% endif %}
+
+                                  {% endif %}
+                                {% endfor %}
                               </ul>
                             </li>
                     <li class="nav-header quarter">Spring</li>
                     {% for sport in sports|season:"SG" %}
-                            <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
+                        {% if sport.is_major %}    
+		          <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
                             {% if not forloop.last %}
                                 <hr />
                             {% endif %}
+		        {% endif %}
                     {% endfor %}
 				<hr />
                             <li align="center" class="dropdown side_bar_sport">
 			            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
                                 Minor Sports
                                 <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu side_bar">
-                                <li class="side_bar_sport">Sports Trivia</li>
-                                <li class="side_bar_sport">Swimming</li>
-				<li class="side_bar_sport">Bowling</li>
+				{% for sport in sports|season:"SG" %}
+                                  {% if not sport.is_major %}
+                                    <li align="center" class="side_bar_sport">{{sport.display}}</li>
+                                    {% if not forloop.last %}
+                                    <hr />
+                                    {% endif %}
+
+                                  {% endif %}
+                                {% endfor %} 
                               </ul>
                             </li>
 			      </ul>
 			   </div>
+
 
 			 {% endblock %}
              </div>
@@ -140,9 +188,14 @@
         {% endblock %}
         {% block footer_base %}
             <div id="footer">
-                <div class="inner">
+                <div class="footer-inner">
                     <div class="container">
-                        {% block footer %}{% endblock %}
+
+                        {% block footer %}
+			<!--
+			<div class="footer">
+			</div>-->
+			{% endblock %}
                     </div>
                 </div>
             </div>
@@ -155,6 +208,10 @@
 	    {% block extra_script %}{% endblock %}
         {% endblock %}
         {% block extra_body_base %}
+
+
+
+
             {% block extra_body %}{% endblock %}
         {% endblock %}
     </body>

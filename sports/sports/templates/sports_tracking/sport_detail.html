@@ -1,5 +1,7 @@
+
 {% extends "base.html" %}
 {% load sport_extras %}
+
 {% block bodytitle %}
     <h1 class="body_title">{{sport.display}}</h1>
 {% endblock %}
@@ -32,6 +34,12 @@
               {% for fraternity in sport|group:"A" %}
 	      <tr>
                 <td>{{fraternity.name}}</td>
+		{% with fraternity|stats:sport.type as data %}
+                <td>{{data.wins}}</td>
+                <td>{{data.losses}}</td>
+                <td>{{data.ties}}</td>
+		<td>{{fraternity|overall_points:sport.type}}</td>
+                {% endwith %}
               </tr>
               {% endfor %}
             </tbody>
@@ -53,6 +61,12 @@
                {% for fraternity in sport|group:"B" %}
                <tr>
                  <td>{{fraternity.name}}</td>
+		 {% with fraternity|stats:sport.type as data %}
+                 <td>{{data.wins}}</td>
+                 <td>{{data.losses}}</td>
+                 <td>{{data.ties}}</td>
+                 <td>{{fraternity|overall_points:sport.type}}</td>
+                 {% endwith %}
                </tr>
                {% endfor %}
             </tbody>
@@ -66,12 +80,12 @@
           <div>
 	   <h2 style="float: left">Tournament</h2>
 	    <br>
-            <div><a href="#" class="hide" id="hide" style="float: right"><b>Hide</b></a></div>
-            <div><a href="#" class="show" id="show" style="float: right"><b>Show</b></a></div>	    
+            <div><a href="javascript:void(0)" class="hide1" id="hide_tournaments" style="float: right"><b>Hide</b></a></div>
+            <div><a href="javascript:void(0)" class="show" id="show_tournaments" style="float: right"><b>Show</b></a></div>	    
 	  </div>
       <br><hr class="section_divider"><br>
 <!-- End Section Header -->
-       <table class="tournament_table" id="tournament_table" summary="Tournament Bracket">
+       <table class="tournament_table hide_element" id="tournament_table" summary="Tournament Bracket">
 	 <tr>
 	   <td><p class="tournament" align="center">Pi kappa Alpha</p></td>
 	   <td rowspan="2"><p class="tournament" align="center">team name</p></td>

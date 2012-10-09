@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 
@@ -21,9 +22,10 @@
     <thead class="sport_brand">
         <tr>
             <th class="tablehead_width_rank">Rank</th>
-
             <th class="tablehead_width_fraternity_overall">Fraternity</th>
+
             <th class="tablehead_width_sport">Points</th>
+
         </tr>
     </thead>
     <tbody>
@@ -49,6 +51,7 @@
    <div>
 
 
+
      <h2 style="float: left">Major Sports</h2>
      <br>
      <div><a href="javascript:void(0)" class="hide1" id="hide_major_sports" style="float: right"><b>Hide</b></a></div>
@@ -63,19 +66,21 @@
             <th class="tablehead_width_rank">Rank</th>
             <th class="tablehead_width_fraternity">Fraternity</th>
             {% if sport %}
+	      {% if sport.is_major %}
                 <th class="tablehead_width_sport">{{sport.display}}</th>
-            {% else %}
-
+	      {% endif %}
+	    {% else %}
                 {% for sport in sports %}
+		   {% if sport.is_major %}
                     <th class="tablehead_width_sport">{{sport.display}}</th>
-                {% endfor %}
+                   {% endif %}
+		{% endfor %}
             {% endif %}
             <th class="tablehead_width_sport">Total</th>
         </tr>
     </thead>
     <tbody>
         {% for fraternity in fraternities %}
-
             {% comment %}
                 {# you can use the stats for a fraternity like this #}
                 {% with fraternity|stats:sport.type as data %}
@@ -86,10 +91,14 @@
 
                 <td>{{fraternity.name}}</td>
                 {% if sport %}
+		  {% if sport.is_major %}
                     <td>{{fraternity|overall_points:sport.type}}</td>
-                {% else %}
+                  {% endif %}
+		{% else %}
                     {% for sport in sports %}
+		      {% if sport.is_major %}
                         <td>{{fraternity|overall_points:sport.type}}</td>
+		      {% endif %}
                     {% endfor %}
                 {% endif %}
                 <td>{{fraternity.overall_points}}</td>
@@ -117,10 +126,14 @@
             <th class="tablehead_width_rank">Rank</th>
             <th class="tablehead_width_fraternity">Fraternity</th>
             {% if sport %}
+	      {% if not sport.is_major %}
                 <th class="tablehead_width_sport">{{sport.display}}</th>
-            {% else %}
+	      {% endif %}
+	    {% else %}
                 {% for sport in sports %}
-                    <th class="tablehead_width_sport">{{sport.display}}</th>
+		  {% if not sport.is_major %}
+                    <th class="tablehead_width_minor">{{sport.display}}</th>
+		  {% endif %}
                 {% endfor %}
             {% endif %}
             <th class="tablehead_width_sport">Total</th>
@@ -137,11 +150,15 @@
                 <td>{{fraternity.rank}}</td>
                 <td>{{fraternity.name}}</td>
                 {% if sport %}
+		  {% if not sport.is_major %}
                     <td>{{fraternity|overall_points:sport.type}}</td>
-                {% else %}
+                  {% endif %}
+		{% else %}
                     {% for sport in sports %}
+		      {% if not sport.is_major %}
                     <td>{{fraternity|overall_points:sport.type}}</td>
-                    {% endfor %}
+                      {% endif %}
+		    {% endfor %}
                 {% endif %}
 	            <td>{{fraternity.overall_points}}</td>
                 </tr>
@@ -174,6 +191,9 @@
             <th class="tablehead_width_rank">Rank</th>
 
             <th class="tablehead_width_fraternity_overall">Fraternity</th>
+	    {% for meeting in fraternity.meeting_set.all %}
+	    <th class="tablehead_width_meeting">{{meeting.date}}</th>
+	    {% endfor %}
             <th class="tablehead_width_sport">Points</th>
         </tr>
     </thead>
