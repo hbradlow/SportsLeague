@@ -1,6 +1,9 @@
 from django.db import models
 
+
+
 from django.contrib.auth.models import User
+
 from django_extensions.db.fields import *
 from django.contrib import admin
 
@@ -23,6 +26,7 @@ class Sport(models.Model):
         (BASKETBALL, 'Basketball'),
         (FLAG_FOOTBALL, 'Flag Football'),
         (VOLLEYBALL, 'Volleyball'),
+
         (SOCCER, 'Soccer'),
         (SOFTBALL, 'Softball'),
         (HOCKEY, 'Hockey'),
@@ -38,7 +42,9 @@ class Sport(models.Model):
     slug = AutoSlugField(populate_from="type",unique=True)
 
     FALL = 'FL'
+
     WINTER = 'WR'
+
     SPRING = 'SG'
     SEASON_CHOICES = (
         (FALL, 'Fall'),
@@ -48,6 +54,7 @@ class Sport(models.Model):
     season = models.CharField(max_length="300", choices=SEASON_CHOICES, default=FALL)
 
     is_major = models.BooleanField(default=True)
+
 
     def display(self):
         return self.get_type_display()
@@ -78,18 +85,23 @@ class Team(models.Model):
             return ", ".join([p.__unicode__() for p in self.players.all()])
 
 class Game(models.Model):
-    teams = models.ManyToManyField(Team)
+    visitor_team = models.ForeignKey(Team, related_name="visitor_team")
+    home_team = models.ForeignKey(Team, related_name="home_team")
     winner = models.ForeignKey(Team,related_name="games_won",null=True)
     is_tie = models.BooleanField(default=False)
     sport = models.ForeignKey(Sport)
     parent = models.ForeignKey("self",null=True,blank=True)
+    location = models.CharField(max_length="200")
+    date = models.DateTimeField()
 
 class Fraternity(models.Model):
     name = models.CharField(max_length="200")
     teams = models.ManyToManyField(Team)
 
     def overall_points_for_sport(self,sport):
+
         points = 0
+
         for team in self.teams.all():
             points += team.games_won.filter(sport=sport).count()
         return points
@@ -101,7 +113,7 @@ class Fraternity(models.Model):
         """
         data = {"wins":0,"losses":0,"ties":0,"points":0}
         for team in self.teams.all():
-            for game in team.game_set.all():
+            for game in list(team.visitor_team.all())+list(team.home_team.all()):
                 if game.winner is team:
                     data['wins']+=1
                 elif game.is_tie:
@@ -151,4 +163,5 @@ admin.site.register(Player)
 admin.site.register(Sport)
 admin.site.register(Team)
 admin.site.register(Game)
+admin.site.register(Meeting)
 

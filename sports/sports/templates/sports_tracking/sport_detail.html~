@@ -6,6 +6,44 @@
     <h1 class="body_title">{{sport.display}}</h1>
 {% endblock %}
 {% block body_content %}
+
+<!-- Section Header: Schedule -->
+   <div>
+     <h2 style="float: left">Schedule</h2>
+     <br>
+   </div>
+   <br><hr class="section_divider"><br>
+<!-- End Section Schedule -->
+
+       <div>
+         <table class="table table-bordered">
+            <thead class="sport_brand">
+              <tr>
+                <th class="tablehead_width_wltp_fraternity">Date/Time</th>
+                <th class="tablehead_width_wltp">Home*</th>
+                <th class="tablehead_width_wltp">Visitor*</th>
+                <th class="tablehead_width_wltp">Location</th>
+                <th class="tablehead_width_wltp">Winner</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for game in sport|all_games_in %}
+              <tr>
+                <td>{{game.date}}</td>
+                <td>{{game.home_team}}</td>
+                <td>{{game.visitor_team}}</td>
+                <td>{{game.location}}</td>
+                <td>{{game.winner}}</td>
+                {% endwith %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+
+
+
 <!-- Section Header: Groups -->    
    <div> 
      <h2 style="float: left">Groups</h2>
@@ -35,17 +73,10 @@
 	      <tr>
                 <td>{{fraternity.name}}</td>
 		{% with fraternity|stats:sport.type as data %}
-
                 <td>{{data.wins}}</td>
-
-
-
-
                 <td>{{data.losses}}</td>
-
                 <td>{{data.ties}}</td>
 		<td>{{fraternity|overall_points:sport.type}}</td>
-
                 {% endwith %}
               </tr>
               {% endfor %}
@@ -90,10 +121,6 @@
           <div>
 	   <h2 style="float: left">Tournament</h2>
 	    <br>
-
-
-
-
             <div><a href="javascript:void(0)" class="hide1" id="hide_tournaments" style="float: right"><b>Hide</b></a></div>
             <div><a href="javascript:void(0)" class="show" id="show_tournaments" style="float: right"><b>Show</b></a></div>	    
 	  </div>

@@ -13,8 +13,26 @@ class Migration(SchemaMigration):
 
         # Adding field 'Meeting.date'
         db.add_column('sports_tracking_meeting', 'date',
-                      self.gf('django.db.models.fields.DateTimeField')(default=0),
+                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 10, 12, 0, 0)),
                       keep_default=False)
+
+        # Adding field 'Game.visitor_team'
+        db.add_column('sports_tracking_game', 'visitor_team',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=0, related_name='visitor_team', to=orm['sports_tracking.Team']),
+                      keep_default=False)
+
+        # Adding field 'Game.home_team'
+        db.add_column('sports_tracking_game', 'home_team',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=0, related_name='home_team', to=orm['sports_tracking.Team']),
+                      keep_default=False)
+
+        # Adding field 'Game.location'
+        db.add_column('sports_tracking_game', 'location',
+                      self.gf('django.db.models.fields.CharField')(default=0, max_length='200'),
+                      keep_default=False)
+
+        # Removing M2M table for field teams on 'Game'
+        db.delete_table('sports_tracking_game_teams')
 
 
     def backwards(self, orm):
@@ -25,6 +43,23 @@ class Migration(SchemaMigration):
 
         # Deleting field 'Meeting.date'
         db.delete_column('sports_tracking_meeting', 'date')
+
+        # Deleting field 'Game.visitor_team'
+        db.delete_column('sports_tracking_game', 'visitor_team_id')
+
+        # Deleting field 'Game.home_team'
+        db.delete_column('sports_tracking_game', 'home_team_id')
+
+        # Deleting field 'Game.location'
+        db.delete_column('sports_tracking_game', 'location')
+
+        # Adding M2M table for field teams on 'Game'
+        db.create_table('sports_tracking_game_teams', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('game', models.ForeignKey(orm['sports_tracking.game'], null=False)),
+            ('team', models.ForeignKey(orm['sports_tracking.team'], null=False))
+        ))
+        db.create_unique('sports_tracking_game_teams', ['game_id', 'team_id'])
 
 
     models = {
@@ -72,11 +107,13 @@ class Migration(SchemaMigration):
         },
         'sports_tracking.game': {
             'Meta': {'object_name': 'Game'},
+            'home_team': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'home_team'", 'to': "orm['sports_tracking.Team']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_tie': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'location': ('django.db.models.fields.CharField', [], {'max_length': "'200'"}),
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.Game']", 'null': 'True'}),
             'sport': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.Sport']"}),
-            'teams': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sports_tracking.Team']", 'symmetrical': 'False'}),
+            'visitor_team': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'visitor_team'", 'to': "orm['sports_tracking.Team']"}),
             'winner': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'games_won'", 'null': 'True', 'to': "orm['sports_tracking.Team']"})
         },
         'sports_tracking.group': {
