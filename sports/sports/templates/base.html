@@ -1,11 +1,6 @@
 
-
-
-
-
-
-
 {% load staticfiles %}
+
 {% load sport_extras %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
@@ -30,7 +25,7 @@
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+    <body class="{% block body_class %}body_class{% endblock %}" id="{% block body_id %}{% endblock %}">
 
         {% block topbar_base %}
 
@@ -45,26 +40,18 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
-
                             </a>
                             {% block site_brand %}<a class="brand" href="{% url home %}">Sports League</a>{% endblock %}
 
                             <div class="nav-collapse">
-
-
                                 {% block nav %}
                                 {% endblock %}
                                 {% block account_bar %}{% endblock %}
                             </div>
                         {% endblock %}
-
                     </div>
-
                 </div>
-
             </div>
-
-
         {% endblock %}
         {% block body_base %}
 
@@ -85,7 +72,9 @@
 
                     <li align="center" class="side_bar_sport"><a href="{% url home %}" class="black">Overall Rankings</a></li>
                     <li class="nav-header quarter">Fall</li>
+
                     {% for sport in sports|season:"FL" %}
+
 
 		         {% if sport.is_major %}
                             <li align="center" class="side_bar_sport"><a href="{% url sport_detail sport.slug %}">{{sport.display}}</a></li>
@@ -125,9 +114,11 @@
 			 {% endif %}
                     {% endfor %}
 
+
 				<hr />
                             <li align="center" class="dropdown side_bar_sport">
 			            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
                                 Minor Sports
                                 <b class="caret"></b>
                               </a>
@@ -165,10 +156,12 @@
                                     <li align="center" class="side_bar_sport">{{sport.display}}</li>
                                     {% if not forloop.last %}
                                     <hr />
+
                                     {% endif %}
 
                                   {% endif %}
                                 {% endfor %} 
+
                               </ul>
                             </li>
 			      </ul>
@@ -179,7 +172,7 @@
              </div>
              {% endblock %}
 	     {% block body %}
-	     <div class="span8" stye="border:2px solid #000">
+	     <div class="span8 body_class" stye="border:2px solid #000">
                 {% block body_content %}
                 {% endblock %}
 	     </div>
@@ -192,9 +185,7 @@
                     <div class="container">
 
                         {% block footer %}
-			<!--
-			<div class="footer">
-			</div>-->
+			{% include "_footer.html" %}
 			{% endblock %}
                     </div>
                 </div>
@@ -207,11 +198,10 @@
 	    <script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-transition.js"></script>
 	    {% block extra_script %}{% endblock %}
         {% endblock %}
+
+
+
         {% block extra_body_base %}
-
-
-
-
             {% block extra_body %}{% endblock %}
         {% endblock %}
     </body>

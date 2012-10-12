@@ -203,6 +203,7 @@ margin-top: -30px;
 .navbar .brand{
     color: @yellow;
     margin-left: 136px;
+    font-size: 18px;
     }
 
 hr{
@@ -219,15 +220,45 @@ hr{
     background-color: @black;
     border-top: 6px solid @yellow;
     width: 1424px;
+    height: 60px;
+    position: fixed;
+    font-family:Century Gothic,arial,sans-serif;
     }
     
-.footer{
-    background: @black;
+#footer{
+    background-color: @black;
     border-bottom: 6px solid @yellow;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 1424px; 
+    width: 1424px;
+    height: 55px;
+    position: fixed;
+    bottom: 0;
     }
+
+.body_class{
+    margin-bottom: 60px;
+    }
+
+.footer_text{
+    color: @yellow;
+    font-size: 18px;
+    margin: 20px;
+    margin-left: 70px;
+    font-family:Century Gothic,arial,sans-serif;
+    &:hover {
+        color: @yellow;
+        text-decoration: underline;
+        }
+    &:visited{
+        color: @yellow;
+        }
+    }
+
+
+    
+.footer_text:visited{
+    color: @yellow;
+    }
+    
     
 .hide_element{
     display: none;

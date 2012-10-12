@@ -35,10 +35,17 @@
 	      <tr>
                 <td>{{fraternity.name}}</td>
 		{% with fraternity|stats:sport.type as data %}
+
                 <td>{{data.wins}}</td>
+
+
+
+
                 <td>{{data.losses}}</td>
+
                 <td>{{data.ties}}</td>
 		<td>{{fraternity|overall_points:sport.type}}</td>
+
                 {% endwith %}
               </tr>
               {% endfor %}
@@ -61,19 +68,32 @@
                {% for fraternity in sport|group:"B" %}
                <tr>
                  <td>{{fraternity.name}}</td>
+		 {% with fraternity|stats:sport.type as data %}
+                 <td>{{data.wins}}</td>
+                 <td>{{data.losses}}</td>
+                 <td>{{data.ties}}</td>
+                 <td>{{fraternity|overall_points:sport.type}}</td>
+                 {% endwith %}
                </tr>
                {% endfor %}
             </tbody>
           </table>
          </div>
+
+
         </div>
      </div>
      
      <div>
 <!-- Section Header: Tournament -->    
+
           <div>
 	   <h2 style="float: left">Tournament</h2>
 	    <br>
+
+
+
+
             <div><a href="javascript:void(0)" class="hide1" id="hide_tournaments" style="float: right"><b>Hide</b></a></div>
             <div><a href="javascript:void(0)" class="show" id="show_tournaments" style="float: right"><b>Show</b></a></div>	    
 	  </div>
@@ -102,6 +122,11 @@
 	   <td><p class="tournament" align="center">7. team name</p></td>
 	   <td><p class="tournament" align="center">8. team name</p></td>
 	 </tr>
-       </table>
+       </table>      
      </div>
+     <div>
+       <p><br></p>
+       <p><br></p>
+       <p><br></p>
+     </div>  
 {% endblock %}

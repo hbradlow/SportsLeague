@@ -735,10 +735,14 @@ table{background-color:rgba(26, 25, 20, 0.9);color:#ffd339;table-layout:fixed;}
 .nav li.dropdown ul.dropdown-menu ul{display:none;float:right;position:relative;top:auto;margin-top:-30px;}
 .nav .nav-header{color:rgba(26, 25, 20, 0.9);font-weight:bold;font-size:12px;}
 .nav>li>a{color:#d2a300;}.nav>li>a:hover{background-color:#d2a300;color:rgba(26, 25, 20, 0.9);font-weight:bold;}
-.navbar .brand{color:#ffd339;margin-left:136px;}
+.navbar .brand{color:#ffd339;margin-left:136px;font-size:18px;}
 hr{margin:0px;color:#d2a300;background-color:#d2a300;padding:1px;border-bottom:0px;border-top:0px;height:.5px;}
-#header{background-color:rgba(26, 25, 20, 0.9);border-top:6px solid #ffd339;width:1424px;}
-.footer{background:rgba(26, 25, 20, 0.9);border-bottom:6px solid #ffd339;border-bottom-left-radius:5px;border-bottom-right-radius:5px;width:1424px;}
+#header{background-color:rgba(26, 25, 20, 0.9);border-top:6px solid #ffd339;width:1424px;height:60px;position:fixed;font-family:Century Gothic,arial,sans-serif;}
+#footer{background-color:rgba(26, 25, 20, 0.9);border-bottom:6px solid #ffd339;width:1424px;height:55px;position:fixed;bottom:0;}
+.body_class{margin-bottom:60px;}
+.footer_text{color:#ffd339;font-size:18px;margin:20px;margin-left:70px;font-family:Century Gothic,arial,sans-serif;}.footer_text:hover{color:#ffd339;text-decoration:underline;}
+.footer_text:visited{color:#ffd339;}
+.footer_text:visited{color:#ffd339;}
 .hide_element{display:none;}
 .tournament_table{border:solid 4px black;font:small;color:rgba(26, 25, 20, 0.9);background-color:rgba(26, 25, 20, 0.9);}
 .tournament{vertical-align:middle;width:102px;border:solid 3px black;background-color:#ffd339;margin:5px;padding:5px 5px 2px 5px;}

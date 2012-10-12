@@ -8,5 +8,5 @@ from sports_tracking.views import *
 urlpatterns = patterns('sports_tracking.views',
     url(r'^$', home,name="home"),
     url(r'^sport/(?P<slug>[\w\._-]+)/$', sport_detail, name="sport_detail"),
-    url(r'^test', test1,name="test1"),
+    url(r'^handbook', handbook,name="handbook"),
 )

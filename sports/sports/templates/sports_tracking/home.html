@@ -1,4 +1,7 @@
 
+
+
+
 {% extends "base.html" %}
 
 
@@ -37,8 +40,11 @@
                 {% endwith %}
             {% endcomment %}
                 <tr>
+
                 <td>{{fraternity.rank}}</td>
+
                 <td>{{fraternity.name}}</td>
+
                 <td>{{fraternity.overall_points}}</td>
                 </tr>
         {% endfor %}
@@ -76,10 +82,13 @@
                    {% endif %}
 		{% endfor %}
             {% endif %}
+
             <th class="tablehead_width_sport">Total</th>
         </tr>
+
     </thead>
     <tbody>
+
         {% for fraternity in fraternities %}
             {% comment %}
                 {# you can use the stats for a fraternity like this #}
@@ -115,12 +124,15 @@
      <h2 style="float: left">Minor Sports</h2>
      <br>
      <div><a href="javascript:void(0)" class="hide1" id="hide_minor_sports" style="float: right"><b>Hide</b></a></div>
+
      <div><a href="javascript:void(0)" class="show" id="show_minor_sports" style="float: right"><b>Show</b></a></div>
    </div>
    <br><hr class="section_divider"><br>
+
 <!-- End Section Header -->
 
 <table class="table table-bordered hide_element" id="minor_sports">
+
     <thead class="sport_brand">
         <tr>
             <th class="tablehead_width_rank">Rank</th>
@@ -154,14 +166,17 @@
                     <td>{{fraternity|overall_points:sport.type}}</td>
                   {% endif %}
 		{% else %}
+
                     {% for sport in sports %}
 		      {% if not sport.is_major %}
                     <td>{{fraternity|overall_points:sport.type}}</td>
                       {% endif %}
+
 		    {% endfor %}
                 {% endif %}
 	            <td>{{fraternity.overall_points}}</td>
                 </tr>
+
         {% endfor %}
     </tbody>
 </table>
@@ -218,6 +233,11 @@
 </div>
 
 
+</div>
+<div>
+  <p><br>&nbsp;</p>
+  <p><br>&nbsp;</p>
+  <p><br>&nbsp;</p>
 </div>
 
 

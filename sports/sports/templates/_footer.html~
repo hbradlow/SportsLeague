@@ -5,7 +5,7 @@
   <div class="navbar-inner">
     <div class="container" id="footer">
       <div class="span12">
-	<p class="footer_text"><a class="footer_text" href="{% url handbook %}">IFC Handbook</a></p>
+	<p class="footer_text"><a class="footer_width" href="{% url handbook %}">IFC Handbook</a></p>
       </div>
     </div>
   </div>
