@@ -64,12 +64,19 @@ class Sport(models.Model):
 
 class Player(models.Model):
     user = models.ForeignKey(User)
+    def __unicode__(self):
+        if self.user.get_full_name():
+            return self.user.get_full_name()
+        else:
+            return self.user.username
     
 class Team(models.Model):
     players = models.ManyToManyField(Player)
     
     def num_wins(self):
         return self.games_won.all().count()
+    def __unicode__(self):
+        return ", ".join([p.__unicode__() for p in self.players.all()])
 
 class Game(models.Model):
     visitor_team = models.ForeignKey(Team, related_name="visitor_team")
