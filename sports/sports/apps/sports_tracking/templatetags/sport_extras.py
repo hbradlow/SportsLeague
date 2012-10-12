@@ -1,7 +1,7 @@
 from django import template
 
 
-from sports_tracking.models import Fraternity, Sport
+from sports_tracking.models import Fraternity, Sport, Game
 
 
 
@@ -69,3 +69,8 @@ def group(sport, group_name):
 @register.inclusion_tag("sports_tracking/team_table.html",takes_context=True)
 def team_table(context,sport=None):
     return {"sport":sport,"request":context['request'],"fraternities":context['fraternities'],"sports":context["sports"]}
+
+@register.filter
+def all_games_in(sport):
+    return Game.objects.filter(sport=sport)
+
