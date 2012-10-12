@@ -65,18 +65,24 @@ class Player(models.Model):
     
 class Team(models.Model):
     players = models.ManyToManyField(Player)
+    name = models.CharField(null=True,blank=True,max_length=200)
     
     def num_wins(self):
         return self.games_won.all().count()
     def __unicode__(self):
-        return ", ".join([p.__unicode__() for p in self.players.all()])
+        if self.name:
+            return self.name
+        elif len(self.fraternity_set.all())>0:
+            return self.fraternity_set.all()[0].name
+        else:
+            return ", ".join([p.__unicode__() for p in self.players.all()])
 
 class Game(models.Model):
     teams = models.ManyToManyField(Team)
     winner = models.ForeignKey(Team,related_name="games_won",null=True)
     is_tie = models.BooleanField(default=False)
     sport = models.ForeignKey(Sport)
-    parent = models.ForeignKey("self",null=True)
+    parent = models.ForeignKey("self",null=True,blank=True)
 
 class Fraternity(models.Model):
     name = models.CharField(max_length="200")
