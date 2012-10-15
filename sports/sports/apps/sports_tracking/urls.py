@@ -9,4 +9,5 @@ urlpatterns = patterns('sports_tracking.views',
     url(r'^$', home,name="home"),
     url(r'^sport/(?P<slug>[\w\._-]+)/$', sport_detail, name="sport_detail"),
     url(r'^handbook', handbook,name="handbook"),
+    url(r'^contacts', contacts,name="contacts"),
 )

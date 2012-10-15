@@ -1,3 +1,5 @@
+
+
 from django.db import models
 
 
@@ -26,7 +28,6 @@ class Sport(models.Model):
         (BASKETBALL, 'Basketball'),
         (FLAG_FOOTBALL, 'Flag Football'),
         (VOLLEYBALL, 'Volleyball'),
-
         (SOCCER, 'Soccer'),
         (SOFTBALL, 'Softball'),
         (HOCKEY, 'Hockey'),
@@ -38,6 +39,8 @@ class Sport(models.Model):
         (SWIMMING, 'Swimming'),
         (BOWLING, 'Bowling'),
     )
+
+
     type = models.CharField(max_length="300",choices=SPORTS_CHOICES, default=BASKETBALL)
     slug = AutoSlugField(populate_from="type",unique=True)
 
@@ -77,7 +80,9 @@ class Team(models.Model):
     def num_wins(self):
         return self.games_won.all().count()
     def __unicode__(self):
+
         if self.name:
+
             return self.name
         elif len(self.fraternity_set.all())>0:
             return self.fraternity_set.all()[0].name
@@ -87,7 +92,7 @@ class Team(models.Model):
 class Game(models.Model):
     visitor_team = models.ForeignKey(Team, related_name="visitor_team")
     home_team = models.ForeignKey(Team, related_name="home_team")
-    winner = models.ForeignKey(Team,related_name="games_won",null=True)
+    winner = models.ForeignKey(Team,related_name="games_won",null=True,blank=True)
     is_tie = models.BooleanField(default=False)
     sport = models.ForeignKey(Sport)
     parent = models.ForeignKey("self",null=True,blank=True)
@@ -116,8 +121,10 @@ class Fraternity(models.Model):
             for game in list(team.visitor_team.all())+list(team.home_team.all()):
                 if game.winner is team:
                     data['wins']+=1
+
                 elif game.is_tie:
                     data['ties']+=1
+
                 else:
                     data['losses']+=1
         return data
@@ -157,6 +164,15 @@ class Group(models.Model):
     def __unicode__(self):
         return self.display()
 
+class Contact(models.Model):
+
+    fraternity = models.ForeignKey(Fraternity)
+    contact_name = models.CharField(max_length="200")
+    contact_number = models.CharField(max_length="200")
+
+    def __unicode__(self):
+        return self.fraternity.name
+
 admin.site.register(Fraternity)
 admin.site.register(Group)
 admin.site.register(Player)
@@ -164,4 +180,4 @@ admin.site.register(Sport)
 admin.site.register(Team)
 admin.site.register(Game)
 admin.site.register(Meeting)
-
+admin.site.register(Contact)

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load sport_extras %}
+
+{% block bodytitle %}
+    <h1 class="body_title">Contacts</h1>
+{% endblock %}
+{% block body_content %}
+
+<!-- Section Header: Schedule -->
+   <div>
+     <h2 style="float: left">Fraternities Contacts</h2>
+     <br>
+   </div>
+   <br><hr class="section_divider"><br>
+<!-- End Section Schedule -->
+
+       <div>
+         <table class="table table-bordered">
+            <thead class="sport_brand">
+              <tr>
+                <th class="tablehead_width_date">Fraternity</th>
+                <th class="tablehead_width_home">Contact Name</th>
+                <th class="tablehead_width_visitor">Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for game in sport|all_games_in %}
+              <tr>
+                <td>{{game.date}}</td>
+                <td>{{game.home_team}}</td>
+                <td>{{game.visitor_team}}</td>
+                <td>{{game.location}}</td>
+                <td>{{game.winner}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+{% endblock %}

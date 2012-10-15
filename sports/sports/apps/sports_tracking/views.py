@@ -3,6 +3,7 @@ from django.shortcuts import *
 from django.core.urlresolvers import reverse
 from sports_tracking.models import Sport
 from sports_tracking.models import Fraternity
+from sports_tracking.models import Contact
 
 def home(request):
     fraternities_list = Fraternity.objects.all()
@@ -33,3 +34,7 @@ def hockey(request):
 
 def handbook(request):
     return render(request,"sports_tracking/handbook.html")
+
+def contacts(request):
+    contacts_list= Contact.objects.all()
+    return render(request,"sports_tracking/contacts.html",{"contacts_list": contacts_list})

@@ -8,18 +8,13 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Fraternity'
-        db.create_table('sports_tracking_fraternity', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length='200')),
-        ))
-        db.send_create_signal('sports_tracking', ['Fraternity'])
-
         # Adding model 'Sport'
         db.create_table('sports_tracking_sport', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('type', self.gf('django.db.models.fields.CharField')(default='BB', max_length='300')),
+            ('slug', self.gf('django_extensions.db.fields.AutoSlugField')(allow_duplicates=False, max_length=50, separator=u'-', blank=True, unique=True, populate_from='type', overwrite=False)),
             ('season', self.gf('django.db.models.fields.CharField')(default='FL', max_length='300')),
+            ('is_major', self.gf('django.db.models.fields.BooleanField')(default=True)),
         ))
         db.send_create_signal('sports_tracking', ['Sport'])
 
@@ -27,13 +22,13 @@ class Migration(SchemaMigration):
         db.create_table('sports_tracking_player', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('fraternity', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sports_tracking.Fraternity'])),
         ))
         db.send_create_signal('sports_tracking', ['Player'])
 
         # Adding model 'Team'
         db.create_table('sports_tracking_team', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
         ))
         db.send_create_signal('sports_tracking', ['Team'])
 
@@ -45,43 +40,78 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('sports_tracking_team_players', ['team_id', 'player_id'])
 
-        # Adding model 'League'
-        db.create_table('sports_tracking_league', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('sport', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sports_tracking.Sport'])),
-            ('season', self.gf('django.db.models.fields.CharField')(max_length='300')),
-        ))
-        db.send_create_signal('sports_tracking', ['League'])
-
-        # Adding M2M table for field teams on 'League'
-        db.create_table('sports_tracking_league_teams', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('league', models.ForeignKey(orm['sports_tracking.league'], null=False)),
-            ('team', models.ForeignKey(orm['sports_tracking.team'], null=False))
-        ))
-        db.create_unique('sports_tracking_league_teams', ['league_id', 'team_id'])
-
         # Adding model 'Game'
         db.create_table('sports_tracking_game', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('winner', self.gf('django.db.models.fields.related.ForeignKey')(related_name='games_won', to=orm['sports_tracking.Team'])),
-            ('league', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sports_tracking.League'])),
+            ('visitor_team', self.gf('django.db.models.fields.related.ForeignKey')(related_name='visitor_team', to=orm['sports_tracking.Team'])),
+            ('home_team', self.gf('django.db.models.fields.related.ForeignKey')(related_name='home_team', to=orm['sports_tracking.Team'])),
+            ('winner', self.gf('django.db.models.fields.related.ForeignKey')(related_name='games_won', null=True, to=orm['sports_tracking.Team'])),
+            ('is_tie', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('sport', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sports_tracking.Sport'])),
+            ('parent', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sports_tracking.Game'], null=True, blank=True)),
+            ('location', self.gf('django.db.models.fields.CharField')(max_length='200')),
+            ('date', self.gf('django.db.models.fields.DateTimeField')()),
         ))
         db.send_create_signal('sports_tracking', ['Game'])
 
-        # Adding M2M table for field teams on 'Game'
-        db.create_table('sports_tracking_game_teams', (
+        # Adding model 'Fraternity'
+        db.create_table('sports_tracking_fraternity', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length='200')),
+        ))
+        db.send_create_signal('sports_tracking', ['Fraternity'])
+
+        # Adding M2M table for field teams on 'Fraternity'
+        db.create_table('sports_tracking_fraternity_teams', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('game', models.ForeignKey(orm['sports_tracking.game'], null=False)),
+            ('fraternity', models.ForeignKey(orm['sports_tracking.fraternity'], null=False)),
             ('team', models.ForeignKey(orm['sports_tracking.team'], null=False))
         ))
-        db.create_unique('sports_tracking_game_teams', ['game_id', 'team_id'])
+        db.create_unique('sports_tracking_fraternity_teams', ['fraternity_id', 'team_id'])
+
+        # Adding model 'Meeting'
+        db.create_table('sports_tracking_meeting', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('description', self.gf('django.db.models.fields.TextField')(null=True)),
+            ('date', self.gf('django.db.models.fields.DateTimeField')()),
+        ))
+        db.send_create_signal('sports_tracking', ['Meeting'])
+
+        # Adding M2M table for field fraternities_attended on 'Meeting'
+        db.create_table('sports_tracking_meeting_fraternities_attended', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('meeting', models.ForeignKey(orm['sports_tracking.meeting'], null=False)),
+            ('fraternity', models.ForeignKey(orm['sports_tracking.fraternity'], null=False))
+        ))
+        db.create_unique('sports_tracking_meeting_fraternities_attended', ['meeting_id', 'fraternity_id'])
+
+        # Adding model 'Group'
+        db.create_table('sports_tracking_group', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('group', self.gf('django.db.models.fields.CharField')(default='A', max_length='300')),
+            ('sport', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sports_tracking.Sport'])),
+        ))
+        db.send_create_signal('sports_tracking', ['Group'])
+
+        # Adding M2M table for field fraternities on 'Group'
+        db.create_table('sports_tracking_group_fraternities', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('group', models.ForeignKey(orm['sports_tracking.group'], null=False)),
+            ('fraternity', models.ForeignKey(orm['sports_tracking.fraternity'], null=False))
+        ))
+        db.create_unique('sports_tracking_group_fraternities', ['group_id', 'fraternity_id'])
+
+        # Adding model 'Contact'
+        db.create_table('sports_tracking_contact', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('fraternity', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sports_tracking.Fraternity'])),
+            ('contact_name', self.gf('django.db.models.fields.CharField')(max_length='200')),
+            ('contact_number', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
+        ))
+        db.send_create_signal('sports_tracking', ['Contact'])
 
 
     def backwards(self, orm):
-        # Deleting model 'Fraternity'
-        db.delete_table('sports_tracking_fraternity')
-
         # Deleting model 'Sport'
         db.delete_table('sports_tracking_sport')
 
@@ -94,17 +124,29 @@ class Migration(SchemaMigration):
         # Removing M2M table for field players on 'Team'
         db.delete_table('sports_tracking_team_players')
 
-        # Deleting model 'League'
-        db.delete_table('sports_tracking_league')
-
-        # Removing M2M table for field teams on 'League'
-        db.delete_table('sports_tracking_league_teams')
-
         # Deleting model 'Game'
         db.delete_table('sports_tracking_game')
 
-        # Removing M2M table for field teams on 'Game'
-        db.delete_table('sports_tracking_game_teams')
+        # Deleting model 'Fraternity'
+        db.delete_table('sports_tracking_fraternity')
+
+        # Removing M2M table for field teams on 'Fraternity'
+        db.delete_table('sports_tracking_fraternity_teams')
+
+        # Deleting model 'Meeting'
+        db.delete_table('sports_tracking_meeting')
+
+        # Removing M2M table for field fraternities_attended on 'Meeting'
+        db.delete_table('sports_tracking_meeting_fraternities_attended')
+
+        # Deleting model 'Group'
+        db.delete_table('sports_tracking_group')
+
+        # Removing M2M table for field fraternities on 'Group'
+        db.delete_table('sports_tracking_group_fraternities')
+
+        # Deleting model 'Contact'
+        db.delete_table('sports_tracking_contact')
 
 
     models = {
@@ -144,40 +186,62 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        'sports_tracking.contact': {
+            'Meta': {'object_name': 'Contact'},
+            'contact_name': ('django.db.models.fields.CharField', [], {'max_length': "'200'"}),
+            'contact_number': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'fraternity': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.Fraternity']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+        },
         'sports_tracking.fraternity': {
             'Meta': {'object_name': 'Fraternity'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': "'200'"})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': "'200'"}),
+            'teams': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sports_tracking.Team']", 'symmetrical': 'False'})
         },
         'sports_tracking.game': {
             'Meta': {'object_name': 'Game'},
+            'date': ('django.db.models.fields.DateTimeField', [], {}),
+            'home_team': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'home_team'", 'to': "orm['sports_tracking.Team']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'league': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.League']"}),
-            'teams': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sports_tracking.Team']", 'symmetrical': 'False'}),
-            'winner': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'games_won'", 'to': "orm['sports_tracking.Team']"})
-        },
-        'sports_tracking.league': {
-            'Meta': {'object_name': 'League'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'season': ('django.db.models.fields.CharField', [], {'max_length': "'300'"}),
+            'is_tie': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'location': ('django.db.models.fields.CharField', [], {'max_length': "'200'"}),
+            'parent': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.Game']", 'null': 'True', 'blank': 'True'}),
             'sport': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.Sport']"}),
-            'teams': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sports_tracking.Team']", 'symmetrical': 'False'})
+            'visitor_team': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'visitor_team'", 'to': "orm['sports_tracking.Team']"}),
+            'winner': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'games_won'", 'null': 'True', 'to': "orm['sports_tracking.Team']"})
+        },
+        'sports_tracking.group': {
+            'Meta': {'object_name': 'Group'},
+            'fraternities': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sports_tracking.Fraternity']", 'symmetrical': 'False'}),
+            'group': ('django.db.models.fields.CharField', [], {'default': "'A'", 'max_length': "'300'"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'sport': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.Sport']"})
+        },
+        'sports_tracking.meeting': {
+            'Meta': {'object_name': 'Meeting'},
+            'date': ('django.db.models.fields.DateTimeField', [], {}),
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True'}),
+            'fraternities_attended': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sports_tracking.Fraternity']", 'symmetrical': 'False'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         'sports_tracking.player': {
             'Meta': {'object_name': 'Player'},
-            'fraternity': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sports_tracking.Fraternity']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
         'sports_tracking.sport': {
             'Meta': {'object_name': 'Sport'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_major': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'season': ('django.db.models.fields.CharField', [], {'default': "'FL'", 'max_length': "'300'"}),
+            'slug': ('django_extensions.db.fields.AutoSlugField', [], {'allow_duplicates': 'False', 'max_length': '50', 'separator': "u'-'", 'blank': 'True', 'unique': 'True', 'populate_from': "'type'", 'overwrite': 'False'}),
             'type': ('django.db.models.fields.CharField', [], {'default': "'BB'", 'max_length': "'300'"})
         },
         'sports_tracking.team': {
             'Meta': {'object_name': 'Team'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'players': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['sports_tracking.Player']", 'symmetrical': 'False'})
         }
     }
