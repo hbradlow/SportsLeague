@@ -86,8 +86,8 @@ table{
     width: 120px;
     }
 
-.table th.tablehead_width_fraternity_overall{
-    width: 708px;
+.table th.tablehead_width_fraternity_overalll{
+    width: 500px;
     }
 
 .table th.tablehead_width_wltp_fraternity{
@@ -221,7 +221,7 @@ hr{
     border-top: 6px solid @yellow;
     width: 1424px;
     height: 60px;
-    position: fixed;
+    position: absolute;
     font-family:Century Gothic,arial,sans-serif;
     }
     
@@ -230,8 +230,17 @@ hr{
     border-bottom: 6px solid @yellow;
     width: 1424px;
     height: 55px;
-    position: fixed;
     bottom: 0;
+    font-family:Century Gothic,arial,sans-serif;
+    }
+    
+#footer_position{
+    position: fixed;
+    bottom: 0 !important;
+    bottom: -1px;
+    width: auto;
+    z-index:2;
+    overflow:visible;
     }
 
 .body_class{
@@ -269,6 +278,7 @@ hr{
   font: small;
   color: @black;
   background-color: @black;
+  width: auto;
     }
     
 .tournament {

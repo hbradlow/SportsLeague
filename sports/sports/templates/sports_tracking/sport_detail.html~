@@ -19,11 +19,11 @@
          <table class="table table-bordered">
             <thead class="sport_brand">
               <tr>
-                <th class="tablehead_width_wltp_fraternity">Date/Time</th>
-                <th class="tablehead_width_wltp">Home*</th>
-                <th class="tablehead_width_wltp">Visitor*</th>
-                <th class="tablehead_width_wltp">Location</th>
-                <th class="tablehead_width_wltp">Winner</th>
+                <th class="tablehead_width_date">Date/Time</th>
+                <th class="tablehead_width_home">Home*</th>
+                <th class="tablehead_width_visitor">Visitor*</th>
+                <th class="tablehead_width_location">Location</th>
+                <th class="tablehead_width_winner">Winner</th>
               </tr>
             </thead>
             <tbody>
@@ -34,7 +34,6 @@
                 <td>{{game.visitor_team}}</td>
                 <td>{{game.location}}</td>
                 <td>{{game.winner}}</td>
-                {% endwith %}
               </tr>
               {% endfor %}
             </tbody>
@@ -116,6 +115,8 @@
      </div>
      
      <div>
+
+
 <!-- Section Header: Tournament -->    
 
           <div>
@@ -126,9 +127,10 @@
 	  </div>
       <br><hr class="section_divider"><br>
 <!-- End Section Header -->
+       <div class="span10">
        <table class="tournament_table hide_element" id="tournament_table" summary="Tournament Bracket">
 	 <tr>
-	   <td><p class="tournament" align="center">Pi kappa Alpha</p></td>
+	   <td><p class="tournament" align="center">1. team name</p></td>
 	   <td rowspan="2"><p class="tournament" align="center">team name</p></td>
 	   <td rowspan="4"><p class="tournament" align="center">team name</p></td>
 	   <td rowspan="4"><p class="tournament" align="center">team name</p></td>
@@ -150,10 +152,6 @@
 	   <td><p class="tournament" align="center">8. team name</p></td>
 	 </tr>
        </table>      
+       </div>
      </div>
-     <div>
-       <p><br></p>
-       <p><br></p>
-       <p><br></p>
-     </div>  
 {% endblock %}

@@ -1,4 +1,5 @@
 
+
 {% load staticfiles %}
 
 {% load sport_extras %}
@@ -43,6 +44,7 @@
                             </a>
                             {% block site_brand %}<a class="brand" href="{% url home %}">Sports League</a>{% endblock %}
 
+
                             <div class="nav-collapse">
                                 {% block nav %}
                                 {% endblock %}
@@ -86,6 +88,7 @@
 				<hr />
 			    <li align="center" class="dropdown side_bar_sport">
 			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
 				Minor Sports
 
 				<b class="caret"></b>
@@ -175,12 +178,13 @@
 	     <div class="span8 body_class" stye="border:2px solid #000">
                 {% block body_content %}
                 {% endblock %}
+
 	     </div>
 	     {% endblock %}
 	</div>
         {% endblock %}
         {% block footer_base %}
-            <div id="footer">
+            <div>
                 <div class="footer-inner">
                     <div class="container">
 

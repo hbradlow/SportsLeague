@@ -1,7 +1,4 @@
 
-
-
-
 {% extends "base.html" %}
 
 
@@ -25,10 +22,8 @@
     <thead class="sport_brand">
         <tr>
             <th class="tablehead_width_rank">Rank</th>
-            <th class="tablehead_width_fraternity_overall">Fraternity</th>
-
+            <th>Fraternity</th>
             <th class="tablehead_width_sport">Points</th>
-
         </tr>
     </thead>
     <tbody>
@@ -40,11 +35,8 @@
                 {% endwith %}
             {% endcomment %}
                 <tr>
-
                 <td>{{fraternity.rank}}</td>
-
                 <td>{{fraternity.name}}</td>
-
                 <td>{{fraternity.overall_points}}</td>
                 </tr>
         {% endfor %}
@@ -181,7 +173,7 @@
     </tbody>
 </table>
 
-<!-- Section Header: Meetings Attended -->
+<!-- Section Header: Meetings Attended 
    <div>
      <h2 style="float: left">Meetings Attended</h2>
      <br>
@@ -191,7 +183,7 @@
    <br><hr class="section_divider"><br>
 <!-- End Section Header -->
 
-<!-- Need to make meetings attended for each fraternity -->
+<!-- Need to make meetings attended for each fraternity
 {% comment %}
     Can loop through all the meetings with:
     {% for meeting in fraternity.meeting_set.all %}
@@ -230,15 +222,9 @@
         {% endfor %}
     </tbody>
 </table>
+-->
 </div>
 
 
 </div>
-<div>
-  <p><br>&nbsp;</p>
-  <p><br>&nbsp;</p>
-  <p><br>&nbsp;</p>
-</div>
-
-
 {% endblock %}

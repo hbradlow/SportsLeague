@@ -1,4 +1,5 @@
 
+
 {% load staticfiles %}
 
 {% load sport_extras %}
@@ -12,7 +13,7 @@
         {% endblock %}
         {% block style_base %}
 
-            <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
+            <link href="{% static "bootstrap/less/sports_tracker.css" %}" rel="stylesheet">
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
           {% block extra_style %}{% endblock %}
         {% endblock %}
@@ -42,6 +43,7 @@
                                 <span class="icon-bar"></span>
                             </a>
                             {% block site_brand %}<a class="brand" href="{% url home %}">Sports League</a>{% endblock %}
+
 
                             <div class="nav-collapse">
                                 {% block nav %}
@@ -86,6 +88,7 @@
 				<hr />
 			    <li align="center" class="dropdown side_bar_sport">
 			      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
 				Minor Sports
 
 				<b class="caret"></b>
@@ -175,12 +178,13 @@
 	     <div class="span8 body_class" stye="border:2px solid #000">
                 {% block body_content %}
                 {% endblock %}
+
 	     </div>
 	     {% endblock %}
 	</div>
         {% endblock %}
         {% block footer_base %}
-            <div id="footer">
+            <div id="footer_position">
                 <div class="footer-inner">
                     <div class="container">
 

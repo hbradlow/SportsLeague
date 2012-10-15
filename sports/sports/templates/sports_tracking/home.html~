@@ -1,6 +1,4 @@
 
-
-
 {% extends "base.html" %}
 
 
@@ -39,6 +37,7 @@
                 {% endwith %}
             {% endcomment %}
                 <tr>
+
                 <td>{{fraternity.rank}}</td>
 
                 <td>{{fraternity.name}}</td>
@@ -80,6 +79,7 @@
                    {% endif %}
 		{% endfor %}
             {% endif %}
+
             <th class="tablehead_width_sport">Total</th>
         </tr>
 
@@ -121,6 +121,7 @@
      <h2 style="float: left">Minor Sports</h2>
      <br>
      <div><a href="javascript:void(0)" class="hide1" id="hide_minor_sports" style="float: right"><b>Hide</b></a></div>
+
      <div><a href="javascript:void(0)" class="show" id="show_minor_sports" style="float: right"><b>Show</b></a></div>
    </div>
    <br><hr class="section_divider"><br>
@@ -162,6 +163,7 @@
                     <td>{{fraternity|overall_points:sport.type}}</td>
                   {% endif %}
 		{% else %}
+
                     {% for sport in sports %}
 		      {% if not sport.is_major %}
                     <td>{{fraternity|overall_points:sport.type}}</td>
@@ -176,7 +178,7 @@
     </tbody>
 </table>
 
-<!-- Section Header: Meetings Attended -->
+<!-- Section Header: Meetings Attended 
    <div>
      <h2 style="float: left">Meetings Attended</h2>
      <br>
@@ -186,7 +188,7 @@
    <br><hr class="section_divider"><br>
 <!-- End Section Header -->
 
-<!-- Need to make meetings attended for each fraternity -->
+<!-- Need to make meetings attended for each fraternity
 {% comment %}
     Can loop through all the meetings with:
     {% for meeting in fraternity.meeting_set.all %}
@@ -225,15 +227,9 @@
         {% endfor %}
     </tbody>
 </table>
+-->
 </div>
 
 
 </div>
-<div>
-       <br>&nbsp;
-       <br>&nbsp;
-       <br>&nbsp;
-</div>
-
-
 {% endblock %}

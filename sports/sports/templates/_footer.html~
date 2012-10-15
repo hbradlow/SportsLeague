@@ -1,14 +1,44 @@
 {% load static %}
 {% load i18n %}
-
- <div class="navbar {% block navbar_class %}navbar-fixed-bottom{% endblock %}"> 
+<!--
+ <div class="navbar {% block _class %}navbar-fixed-bottom{% endblock %}">
   <div class="navbar-inner">
     <div class="container" id="footer">
       <div class="span12">
-	<p class="footer_text"><a class="footer_text" href="{% url handbook %}">IFC Handbook1</a></p>
-	<p class="footer_text"><a class="footer_text" href="{% url contacts %}">Contacts</a></p>
+	<p class="footer_text"><a class="footer_text" href="{% url handbook %}">IFC Handbook</a>
+	<a class="footer_text" href="{% url contacts %}">Contacts</a></p>
       </div>
     </div>
   </div>
 </div>
+-->
 
+ {% block bottombar_base %}
+
+
+            <div class="navbar {% block navbar_class %}navbar-fixed-bottom{% endblock %}">
+
+                <div class="navbar-inner">
+                    <div class="container" id="footer">
+                        {% block topbar %}
+
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            {% block site_brand %}
+			    <a class="brand" href="{% url handbook %}">IFC Handbook</a>
+			    <a class="brand" href="{% url contacts %}">Contacts</a>
+			    {% endblock %}
+
+                            <div class="nav-collapse">
+                                {% block nav %}
+                                {% endblock %}
+                                {% block account_bar %}{% endblock %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
