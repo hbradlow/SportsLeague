@@ -13,7 +13,7 @@
         {% endblock %}
         {% block style_base %}
 
-            <link href="{% static "bootstrap/less/sports_tracker.css" %}" rel="stylesheet">
+            <link href="{% static "bootstrap/less/bootstrap.css" %}" rel="stylesheet">
             <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
           {% block extra_style %}{% endblock %}
         {% endblock %}
@@ -184,7 +184,7 @@
 	</div>
         {% endblock %}
         {% block footer_base %}
-            <div>
+            <div id="footer_position">
                 <div class="footer-inner">
                     <div class="container">
 
